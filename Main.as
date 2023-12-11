@@ -3,6 +3,10 @@ string xmlString = "";
 
 bool isMapLoaded = false;
 
+void Main() {
+    print("Test");
+}
+
 void Update() {
     print("1");
 
