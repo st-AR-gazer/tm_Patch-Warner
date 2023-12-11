@@ -2,12 +2,17 @@
 string xmlString = "";
 auto fidFile = cast<CSystemFidFile>(GetFidFromNod(Editor.Challenge));
 
+bool isMapLoaded = false;
+
 void Update() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
 
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
-    if (playground is null || playground.Arena.Players.Length == 0) return;
+    if (playground is null || playground.Arena.Players.Length == 0) {
+        isMapLoaded = false;
+        return;
+    }
 
     auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
     if (script is null) return; 
@@ -15,13 +20,11 @@ void Update() {
     auto scene = cast<ISceneVis@>(app.GameScene);
     if (scene is null) return;
 
-    OnMapLoad();
+    if (!isMapLoaded) {
+        OnMapLoad();
+        isMapLoaded = true;
+    }
 }
-
-
-
-
-// XML thingy
 
 void OnMapLoad() {
     string exeVersion = GetExeVersionFromXML();
