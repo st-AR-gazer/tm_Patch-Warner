@@ -1,3 +1,4 @@
+
 string xmlString = "";
 auto fidFile = cast<CSystemFidFile>(GetFidFromNod(Editor.Challenge));
 
