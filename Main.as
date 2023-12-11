@@ -1,6 +1,8 @@
 
 string xmlString = "";
 
+auto fidFile;
+
 bool isMapLoaded = false;
 
 void Main() {
