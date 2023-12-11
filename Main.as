@@ -1,6 +1,5 @@
 
 string xmlString = "";
-auto fidFile = cast<CSystemFidFile>(GetFidFromNod(Editor.Challenge));
 
 bool isMapLoaded = false;
 
@@ -20,14 +19,24 @@ void Update() {
     auto scene = cast<ISceneVis@>(app.GameScene);
     if (scene is null) return;
 
+    auto fidFile = cast<CSystemFidFile>(GetApp().RootMap);
+    if (fidFile is null) { 
+        isMapLoaded = false;
+        return;
+    }
+    
     if (!isMapLoaded) {
-        OnMapLoad();
+        auto fileName = fidFile.FullFileName;
+            print("aaa" + fileName);
+
+        OnMapLoad(fidFile, fileName);
         isMapLoaded = true;
     }
 }
 
-void OnMapLoad() {
-    string exeVersion = GetExeVersionFromXML();
+void OnMapLoad(auto fidFile, auto fileName) {
+    string exeVersion = GetExeVersionFromXML(fidFile, fileName);
+    
     
     if (exeVersion < "1.0.0")
     {
@@ -35,14 +44,15 @@ void OnMapLoad() {
     }
 }
 
-string GetExeVersionFromXML() {
+string GetExeVersionFromXML(auto fidFile, auto fileName) {
     string exeVersion = "";
     
     if (fidFile !is null)
     {
         try
-        {
-            IO::File mapFile(fidFile.FullFileName);
+        {   
+            print("aaa" + fileName);
+            IO::File mapFile(fileName);
             mapFile.Open(IO::FileMode::Read);
 
             mapFile.SetPos(17);
