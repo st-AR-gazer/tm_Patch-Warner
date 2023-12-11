@@ -38,7 +38,7 @@ void Update() {
 
     print("5");
 
-    auto fidFile = cast<CSystemFidFile>(GetApp().RootMap);
+    auto fidFile = cast<CSystemFidFile>(app. ManiaTitlesFolder);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
@@ -117,5 +117,5 @@ string GetExeVersionFromXML(auto fidFile) {
 // Notification
 
 void NotifyWarn(const string &in msg) {
-    UI::ShowNotification("Auto Load WR Ghost", msg, vec4(1, .5, .1, .5), 10000);
+    UI::ShowNotification("Map date warning", msg, vec4(1, .5, .1, .5), 10000);
 }
