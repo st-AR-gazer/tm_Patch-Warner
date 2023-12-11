@@ -1,0 +1,5 @@
+[Info]
+Name = "Wood Warning"
+Author = "ar....."
+Version = "0.1.0"
+Description = "A small plugin that warns the player if the wood on the current map is old or not (might add ice too :eyes:)"
