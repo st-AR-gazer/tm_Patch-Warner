@@ -24,13 +24,15 @@ void Update() {
         isMapLoaded = false;
         return;
     }
+
+    print("aaa " + fidFile.FullFileName);
     
     if (!isMapLoaded) {
-        OnMapLoad(fidFile);
+//        OnMapLoad(fidFile);
         isMapLoaded = true;
     }
 }
-
+/*
 void OnMapLoad(auto fidFile) {
 //    string exeVersion = GetExeVersionFromXML(fidFile);
     
@@ -39,7 +41,7 @@ void OnMapLoad(auto fidFile) {
         NotifyWarn("Exe version is below the required version.");
     }
 }
-/*
+
 string GetExeVersionFromXML(auto fidFile) {
     string exeVersion = "";
     
