@@ -4,8 +4,12 @@ string xmlString = "";
 bool isMapLoaded = false;
 
 void Update() {
+    print("1");
+
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
+
+    print("2");
 
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) {
@@ -13,17 +17,25 @@ void Update() {
         return;
     }
 
+    print("3");
+
     auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
     if (script is null) return; 
 
+    print("4");
+
     auto scene = cast<ISceneVis@>(app.GameScene);
     if (scene is null) return;
+
+    print("5");
 
     auto fidFile = cast<CSystemFidFile>(GetApp().RootMap);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
     }
+
+    print("6");
 
     print("aaa " + fidFile.FullFileName);
     
