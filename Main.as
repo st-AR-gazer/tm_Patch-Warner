@@ -2,6 +2,26 @@
 string xmlString = "";
 auto fidFile = cast<CSystemFidFile>(GetFidFromNod(Editor.Challenge));
 
+void Update() {
+    CTrackMania@ app = cast<CTrackMania>(GetApp());
+    if (app is null) return;
+
+    auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
+    if (playground is null || playground.Arena.Players.Length == 0) return;
+
+    auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
+    if (script is null) return; 
+
+    auto scene = cast<ISceneVis@>(app.GameScene);
+    if (scene is null) return;
+
+    OnMapLoad();
+}
+
+
+
+
+// XML thingy
 
 void OnMapLoad() {
     string exeVersion = GetExeVersionFromXML();
