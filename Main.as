@@ -34,7 +34,7 @@ void Update() {
     }
 }
 
-void OnMapLoad(auto fidFile, auto fileName) {
+void OnMapLoad(CGameCtnEditorFree@ fidFile, auto fileName) {
     string exeVersion = GetExeVersionFromXML(fidFile, fileName);
     
     
@@ -44,7 +44,7 @@ void OnMapLoad(auto fidFile, auto fileName) {
     }
 }
 
-string GetExeVersionFromXML(auto fidFile, auto fileName) {
+string GetExeVersionFromXML(CGameCtnEditorFree@ fidFile, auto fileName) {
     string exeVersion = "";
     
     if (fidFile !is null)
