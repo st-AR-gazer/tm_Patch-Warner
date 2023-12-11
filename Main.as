@@ -26,33 +26,28 @@ void Update() {
     }
     
     if (!isMapLoaded) {
-        auto fileName = fidFile.FullFileName;
-            print("aaa" + fileName);
-
-        OnMapLoad(fidFile, fileName);
+        OnMapLoad(fidFile);
         isMapLoaded = true;
     }
 }
 
-void OnMapLoad(CGameCtnEditorFree@ fidFile, auto fileName) {
-    string exeVersion = GetExeVersionFromXML(fidFile, fileName);
+void OnMapLoad(auto fidFile) {
+//    string exeVersion = GetExeVersionFromXML(fidFile);
     
-    
-    if (exeVersion < "1.0.0")
+//    if (exeVersion < "1.0.0")
     {
         NotifyWarn("Exe version is below the required version.");
     }
 }
-
-string GetExeVersionFromXML(CGameCtnEditorFree@ fidFile, auto fileName) {
+/*
+string GetExeVersionFromXML(auto fidFile) {
     string exeVersion = "";
     
     if (fidFile !is null)
     {
         try
         {   
-            print("aaa" + fileName);
-            IO::File mapFile(fileName);
+            IO::File mapFile(fidFile.FullFileName);
             mapFile.Open(IO::FileMode::Read);
 
             mapFile.SetPos(17);
@@ -93,6 +88,7 @@ string GetExeVersionFromXML(CGameCtnEditorFree@ fidFile, auto fileName) {
     
     return exeVersion;
 }
+*/
 
 
 // Notification
