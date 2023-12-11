@@ -5,6 +5,11 @@ bool isMapLoaded = false;
 
 void Main() {
     print("Test");
+
+    while (true) {
+        Update();
+        sleep(500);
+    }
 }
 
 void Update() {
