@@ -38,7 +38,8 @@ void Update() {
 
     print("5");
 
-    auto fidFile = cast<CSystemFidFile>(app. ManiaTitlesFolder);
+
+    auto fidFile = cast<CSystemFidFile>(fidFile);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
