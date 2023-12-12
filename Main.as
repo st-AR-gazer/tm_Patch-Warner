@@ -8,7 +8,6 @@ void Main() {
     while (true) {
         Update();
         sleep(500);
-        print("aaa");
     }
 }
 
@@ -28,17 +27,12 @@ void Update() {
     auto scene = cast<ISceneVis@>(app.GameScene);
     if (scene is null) return;
 
-    print("aaaaaaaaaaaaaaa");
-
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
-    print("bbbbbbbbbbbbbbbb");
     print(fidFile.FullFileName);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
     }
-
-    print("ccccccccccccccc");
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info);
@@ -63,7 +57,7 @@ void OnMapLoad() {
     if (exeBuild < "2022-05-19_15_03") {
         log("The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.", LogLevel::Warn);
         NotifyWarnIce("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the first ice update, the medal times may be affected.");
-    } else if (exeBuild >= "2023-04-28_17_34" && exeBuild < "2023-11-15_11_56") {
+    } else if (exeBuild >= "2023-04-28_17_34" && exeBuild < "2022-05-19_15_03") {
         log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn);
         NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
     }
