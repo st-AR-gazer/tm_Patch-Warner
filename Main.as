@@ -51,7 +51,7 @@ void OnMapLoad(CSystemFidFile fidFile) {
     
     if (exeVersion < "3.3.0")
     {
-        NotifyWarn("This maps exe version: '" + exeVersion + "'' indicates that this map was uploaded BEFORE the wood update, all wood on this map wil behave like tarmac (road).");
+        NotifyWarn("This maps exe version: '" + exeVersion + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map wil behave like tarmac (road).");
     }
 }
 
