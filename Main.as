@@ -32,7 +32,7 @@ void Update() {
     CGameCtnEditorFree@ Editor = cast<CGameCtnEditorFree>(GetApp().Editor);
     if (Editor is null) return;
 
-    CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(Editor.Challenge));
+    CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
