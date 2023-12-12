@@ -31,12 +31,14 @@ void Update() {
     print("aaaaaaaaaaaaaaa");
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
+    print("bbbbbbbbbbbbbbbb");
+    print(fidFile);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
     }
 
-    print("bbbbbbbbbbbbbbbb");
+    print("ccccccccccccccc");
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info);
