@@ -5,8 +5,6 @@ auto fidFile;
 bool isMapLoaded = false;
 
 void Main() {
-    print("Test");
-
     while (true) {
         Update();
         sleep(500);
@@ -41,13 +39,17 @@ void Update() {
     print("aaa " + fidFile.FullFileName);
     
     if (!isMapLoaded) {
-        OnMapLoad(fidFile);
+        OnMapLoad();
         isMapLoaded = true;
     }
 }
 
-void OnMapLoad(CSystemFidFile fidFile) {
+void OnMapLoad() {
+    CTrackMania@ app = cast<CTrackMania>(GetApp());
+    CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
+
     string exeVersion = GetExeVersionFromXML(fidFile);
+    print("Exe version: " + exeVersion);
     
     if (exeVersion < "3.3.0")
     {
@@ -61,7 +63,7 @@ class GbxHeaderChunkInfo
     int ChunkSize;
 }
 
-string GetExeVersionFromXML(CSystemFidFile fidFile) {
+string GetExeVersionFromXML(CSystemFidFile@ fidFile) {
     if (fidFile !is null)
     {
         try
