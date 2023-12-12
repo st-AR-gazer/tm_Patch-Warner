@@ -30,7 +30,7 @@ void Update() {
 
     print("aaaaaaaaaaaaaaa");
 
-    CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
+    CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
     print("bbbbbbbbbbbbbbbb");
     print(fidFile.FullFileName);
     if (fidFile is null) { 
