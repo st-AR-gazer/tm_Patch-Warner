@@ -51,7 +51,7 @@ void Update() {
 void OnMapLoad(CSystemFidFile fidFile) {
     string exeVersion = GetExeVersionFromXML(fidFile);
     
-    if (exeVersion < "1.0.0")
+    if (exeVersion < "3.3.0")
     {
         NotifyWarn("Exe version is below the required version.");
     }
