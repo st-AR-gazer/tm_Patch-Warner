@@ -38,9 +38,11 @@ void Update() {
 
     print("5");
 
+    CTrackMania@ nod = cast<CMwNod>(nod);
+    if (nod is null) return;
 
-    auto fidFile = cast<CSystemFidFile>(fidFile);
-    if (fidFile is null) { 
+    CMwNod@ fidFile = cast<CSystemFidFile>(nod.);
+    if (fidFile is null) {
         isMapLoaded = false;
         return;
     }
