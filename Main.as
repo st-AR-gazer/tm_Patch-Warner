@@ -118,4 +118,5 @@ string GetExeBuildFromXML(CSystemFidFile@ fidFile) {
     {
         log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn);
     }
+    return xmlString;
 }
