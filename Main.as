@@ -32,7 +32,7 @@ void Update() {
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
     print("bbbbbbbbbbbbbbbb");
-    print(fidFile);
+    print(fidFile.FullFileName);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
