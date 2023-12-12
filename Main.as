@@ -1,6 +1,5 @@
 
 string xmlString = "";
-
 auto fidFile;
 
 bool isMapLoaded = false;
@@ -64,7 +63,6 @@ class GbxHeaderChunkInfo
 }
 
 string GetExeVersionFromXML(CSystemFidFile fidFile) {
-    string xmlString = "";
     if (fidFile !is null)
     {
         try
