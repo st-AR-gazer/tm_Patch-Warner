@@ -28,7 +28,6 @@ void Update() {
     if (scene is null) return;
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
-    print(fidFile.FullFileName);
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
