@@ -38,7 +38,6 @@ void Update() {
         return;
     }
 
-
     print("aaa " + fidFile.FullFileName);
     
     if (!isMapLoaded) {
