@@ -8,6 +8,7 @@ void Main() {
     while (true) {
         Update();
         sleep(500);
+        print("aaa");
     }
 }
 
@@ -30,11 +31,15 @@ void Update() {
     CGameCtnEditorFree@ Editor = cast<CGameCtnEditorFree>(GetApp().Editor);
     if (Editor is null) return;
 
+    print("aaaaaaaaaaaaaaa");
+
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
     if (fidFile is null) { 
         isMapLoaded = false;
         return;
     }
+
+    print("bbbbbbbbbbbbbbbb");
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info);
