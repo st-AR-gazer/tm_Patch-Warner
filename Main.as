@@ -28,9 +28,6 @@ void Update() {
     auto scene = cast<ISceneVis@>(app.GameScene);
     if (scene is null) return;
 
-    CGameCtnEditorFree@ Editor = cast<CGameCtnEditorFree>(GetApp().Editor);
-    if (Editor is null) return;
-
     print("aaaaaaaaaaaaaaa");
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
