@@ -1,5 +1,3 @@
-
-
 auto fidFile;
 
 bool isMapLoaded = false;
@@ -40,10 +38,6 @@ void Update() {
         log("Map load check completed.", LogLevel::Info);
     }
 }
-
-
-
-
 
 void OnMapLoad() {
     log("OnMapLoad function started.", LogLevel::Info);
