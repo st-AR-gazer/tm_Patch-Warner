@@ -129,16 +129,16 @@ string GetExeBuildFromXML() {
                 }
 
             }
-            log("GetExeBuildFromXML function finished.", LogLevel::Info, 134);
+            log("GetExeBuildFromXML function finished.", LogLevel::Info, 132);
         }
         catch
         {
-            log("Error reading map file in GetExeBuildFromXML.", LogLevel::Error, 138);
+            log("Error reading map file in GetExeBuildFromXML.", LogLevel::Error, 136);
         }
     }
     else
     {
-        log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn, 143);
+        log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn, 141);
     }
     return exeBuild;
 }
