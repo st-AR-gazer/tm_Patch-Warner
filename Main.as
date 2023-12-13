@@ -122,16 +122,18 @@ string GetExeBuildFromXML() {
                 doc.LoadString(xmlString);
                 XML::Node headerNode = doc.Root().FirstChild();
                 
-                if (headerNode !is null) {
+                if (headerNode) {
                     string potentialExeBuild = headerNode.Attribute("exebuild");
-
                     if (potentialExeBuild != "") {
                         exeBuild = potentialExeBuild;
                     } else {
                         log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn);
                         return "9999-99-99_99_99";
                     }
+                } else {
+                    log("headerNode is invalid in GetExeBuildFromXML.", LogLevel::Warn);
                 }
+
             }
 
 
