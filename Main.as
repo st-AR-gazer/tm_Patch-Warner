@@ -129,7 +129,7 @@ string GetExeBuildFromXML() {
                         exeBuild = potentialExeBuild;
                     } else {
                         log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn);
-                        return xmlString = "9999-99-99_99_99";
+                        return "9999-99-99_99_99";
                     }
                 }
             }
