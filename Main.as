@@ -59,9 +59,9 @@ void OnMapLoad() {
         NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
     }
     
-    if (exeBuild < "2023-04-28_17_34")
+    if (exeBuild < "2023-11-15_11_56")
     {
-        log("The exebuild is less than 2023-04-28_17_34. Warning wood physics.", LogLevel::Warn);
+        log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn);
         NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
     }
     log("OnMapLoad function finished.", LogLevel::Info);
