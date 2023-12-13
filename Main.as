@@ -148,5 +148,5 @@ string GetExeBuildFromXML() {
     {
         log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn);
     }
-    return xmlString;
+    return exeBuild;
 }
