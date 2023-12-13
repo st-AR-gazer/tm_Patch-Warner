@@ -73,7 +73,7 @@ class GbxHeaderChunkInfo
     int ChunkSize;
 }
 
-string GetExeBuildFromXML(CSystemFidFile@ fidFile) {
+string GetExeBuildFromXML() {
     string xmlString = "";
     string exeBuild = "";
 
@@ -114,17 +114,26 @@ string GetExeBuildFromXML(CSystemFidFile@ fidFile) {
                 log("Read chunk " + i + " of size " + chunks[i].ChunkSize, LogLevel::Info);
             }
 
+            mapFile.Close();
+
+
             if (xmlString != "") {
                 XML::Document doc;
                 doc.LoadString(xmlString);
                 XML::Node headerNode = doc.Root().FirstChild();
                 
-                if (headerNode !is null && (headerNode.Attribute("exebuild") !is null)) {
-                    exeBuild = headerNode.Attribute("exebuild");
+                if (headerNode !is null) {
+                    string potentialExeBuild = headerNode.Attribute("exebuild");
+
+                    if (potentialExeBuild != "") {
+                        exeBuild = potentialExeBuild;
+                    } else {
+                        log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn);
+                        return xmlString = "9999-99-99_99_99";
+                    }
                 }
             }
 
-            mapFile.Close();
 
             log("GetExeBuildFromXML function finished.", LogLevel::Info);
         }
