@@ -47,10 +47,8 @@ void Update() {
 
 void OnMapLoad() {
     log("OnMapLoad function started.", LogLevel::Info);
-    CTrackMania@ app = cast<CTrackMania>(GetApp());
-    CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetFidFromNod(app.RootMap.MapInfo.Fid));
 
-    string exeBuild = GetExeBuildFromXML(fidFile);
+    string exeBuild = GetExeBuildFromXML();
     log("Exe build: " + exeBuild, LogLevel::Info);
 
     if (exeBuild < "2022-05-19_15_03") {
@@ -80,6 +78,9 @@ string GetExeBuildFromXML(CSystemFidFile@ fidFile) {
     string exeBuild = "";
 
     log("GetExeBuildFromXML function started.", LogLevel::Info);
+
+    CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetApp().RootMap.MapInfo.Fid);
+
     if (fidFile !is null)
     {
         try
