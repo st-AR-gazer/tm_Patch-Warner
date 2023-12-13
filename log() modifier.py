@@ -40,7 +40,7 @@ def modify_log_statements(directory):
 
 def main():
     print("Log Statement Modifier")
-    directory = "./"
+    directory = "./src"
     modifications = modify_log_statements(directory)
 
     print("Processing complete.")
