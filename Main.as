@@ -3,9 +3,6 @@ auto fidFile;
 bool isMapLoaded = false;
 
 void Main() {
-    NotifyWarn("a");
-    NotifyWarnIce("b");
-    NotifyWarnIce2("c");
     while (true) {
         Update();
         sleep(500);
