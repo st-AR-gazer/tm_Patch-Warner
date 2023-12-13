@@ -1,5 +1,5 @@
 
-string xmlString = "";
+
 auto fidFile;
 
 bool isMapLoaded = false;
@@ -76,6 +76,9 @@ class GbxHeaderChunkInfo
 }
 
 string GetExeBuildFromXML(CSystemFidFile@ fidFile) {
+    string xmlString = "";
+    string exeBuild = "";
+
     log("GetExeBuildFromXML function started.", LogLevel::Info);
     if (fidFile !is null)
     {
@@ -102,8 +105,26 @@ string GetExeBuildFromXML(CSystemFidFile@ fidFile) {
             for (uint i = 0; i < chunks.Length; i++)
             {
                 MemoryBuffer chunkBuffer = mapFile.Read(chunks[i].ChunkSize);
+                if (chunks[i].ChunkId == 50606085) {
+                    int stringLength = chunkBuffer.ReadInt32();
+                    xmlString = chunkBuffer.ReadString(stringLength);
+                    break;
+                }
                 log("Read chunk " + i + " of size " + chunks[i].ChunkSize, LogLevel::Info);
             }
+
+            if (xmlString != "") {
+                XML::Document doc;
+                doc.LoadString(xmlString);
+                XML::Node headerNode = doc.Root().FirstChild();
+                
+                if (headerNode !is null && (headerNode.Attribute("exebuild") !is null)) {
+                    exeBuild = headerNode.Attribute("exebuild");
+                }
+            }
+
+            mapFile.Close();
+
             log("GetExeBuildFromXML function finished.", LogLevel::Info);
         }
         catch
