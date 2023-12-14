@@ -1,5 +1,5 @@
 void NotifyWarn(const string &in msg) { // Wood
-    //UI::ShowNotification("Warning message", msg + "\n" + "\\$b86" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), 10000);
+    UI::ShowNotification("Warning message", msg + "\n" + "\\$b86" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), 10000);
 }
 void NotifyWarnIce(const string &in msg) { // Ice Gen1
     UI::ShowNotification("Warning message", msg + "\n" + "\\$3cf" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), 10000);
