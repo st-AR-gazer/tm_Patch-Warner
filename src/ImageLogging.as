@@ -11,6 +11,7 @@ void StartAnimation() {
 }
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
+    print("test");
     // Image dimensions
     float imageWidth = screenWidth / 9;
     float aspectRatio = 322.0f / 304.0f;
