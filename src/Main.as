@@ -45,18 +45,35 @@ void OnMapLoad() {
     string exeBuild = GetExeBuildFromXML();
     log("Exe build: " + exeBuild, LogLevel::Info, 46);
 
+    // if (doVisualImageInducator) {
+    //     log("Visual image indicator is enabled.", LogLevel::Info, 49);
+    //     NotifyVisualImage();
+    // }
+
     if (exeBuild < "2022-05-19_15_03") {
-        log("The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.", LogLevel::Warn, 49);
-        NotifyWarnIce("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the first ice update, the medal times may be affected.");
-    } else if (exeBuild < "2023-04-28_17_34" && exeBuild >= "2022-05-19_15_03") {
-        log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn, 52);
-        NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
+        if (doVisualImageInducator) {
+            NotifyVisualImageWood();
+        } else {
+            log("The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.", LogLevel::Warn, 49);
+            NotifyWarnIce("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the first ice update, the medal times may be affected.");
+        }
+    }
+    if (exeBuild < "2023-04-28_17_34" && exeBuild >= "2022-05-19_15_03") {
+        if (doVisualImageInducator) {
+            NotifyVisualImageIce2();
+        } else {
+            log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn, 52);
+            NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
+        }
     }
     
-    if (exeBuild < "2023-11-15_11_56")
-    {
-        log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn, 58);
-        NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
+    if (exeBuild < "2023-11-15_11_56") {
+        if (doVisualImageInducator) {
+            NotifyVisualImageIce();
+        } else {
+            log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn, 58);
+            NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
+        }
     }
     log("OnMapLoad function finished.", LogLevel::Info, 61);
 }
