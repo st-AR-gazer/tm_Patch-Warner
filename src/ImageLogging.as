@@ -10,40 +10,37 @@ void StartAnimation() {
     isAnimating = true;
 }
 
-void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
+void DrawImageAtFixedPosition(const string &in imagePath, float screenWidth, float screenHeight) {
     // Image dimensions
     float imageWidth = screenWidth / 9;
     float aspectRatio = 322.0f / 304.0f;
     float imageHeight = imageWidth * aspectRatio;
 
-    // Position calculations
-    float startX = screenWidth / 4;
-    float startY = -imageHeight;
-    float endY = screenHeight / 4;
+    // Fixed position at (0,0)
+    float startX = 0;
+    float startY = 0;
 
-    // Time calculations
-    float currentTime = Time::get_Now();
-    float animationDuration = 5;
-    float progress = Math::Min(1.0f, (currentTime - animationStartTime) / animationDuration);
-
-
-    float yPos;
-    if (isAnimating) {
-        yPos = Math::Lerp(startY, endY, progress);
-        if (progress >= 1.0f) {
-            isAnimating = false;
-        }
-    } else {
-        yPos = endY;
-    }
-
+    // Load and draw the image
     nvg::Texture@ texture = nvg::LoadTexture(imagePath);
-    nvg::Paint imgPaint = nvg::TexturePattern(vec2(startX, yPos), vec2(imageWidth, imageHeight), 0, texture, 1.0f);
+    nvg::Paint imgPaint = nvg::TexturePattern(vec2(startX, startY), vec2(imageWidth, imageHeight), 0, texture, 1.0f);
     nvg::BeginPath();
-    nvg::Rect(startX, yPos, imageWidth, imageHeight);
+    nvg::Rect(startX, startY, imageWidth, imageHeight);
     nvg::FillPaint(imgPaint);
     nvg::Fill();
 }
+
+void NotifyVisualImageIce() {
+    DrawImageAtFixedPosition("/src/img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
+}
+
+void NotifyVisualImageIce2() {
+    DrawImageAtFixedPosition("/src/img/ice2.png", Draw::GetWidth(), Draw::GetHeight());
+}
+
+void NotifyVisualImageWood() {
+    DrawImageAtFixedPosition("/src/img/wood.png", Draw::GetWidth(), Draw::GetHeight());
+}
+
 
 void NotifyVisualImageIce() {
     UpdateAndDrawImage("/src/img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
