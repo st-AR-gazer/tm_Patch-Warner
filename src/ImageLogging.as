@@ -13,7 +13,7 @@ void StartAnimation() {
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
     // Image dimensions
     float imageWidth = screenWidth / 9;
-    float aspectRatio = 322.0f / 304.0f; // height / width of the original image
+    float aspectRatio = 322.0f / 304.0f;
     float imageHeight = imageWidth * aspectRatio;
 
     // Fixed position at (0,0)
@@ -25,6 +25,7 @@ void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float scr
     nvg::Paint imgPaint = nvg::TexturePattern(vec2(startX, startY), vec2(imageWidth, imageHeight), 0, texture, 1.0f);
     nvg::BeginPath();
     nvg::Rect(startX, startY, imageWidth, imageHeight);
+    nvg::FillColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
     nvg::FillPaint(imgPaint);
     nvg::Fill();
 }
