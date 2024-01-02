@@ -4,6 +4,7 @@ bool isMapLoaded = false;
 bool conditionForIce1 = false;
 bool conditionForIce2 = false;
 bool conditionForWood = false;
+bool hasPlayedOnThisMap = false;
 
 void Main() {
     while (true) {
@@ -35,6 +36,7 @@ void Update() {
         conditionForIce1 = false;
         conditionForIce2 = false;
         conditionForWood = false;
+        hasPlayedOnThisMap = false;
         return;
     }
 
