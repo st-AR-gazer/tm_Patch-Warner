@@ -43,7 +43,7 @@ void NotifyVisualImageWood() {
     UpdateAndDrawImage("/src/img/wood.png", Draw::GetWidth(), Draw::GetHeight());
 }
 
-void OnRender() {
+void Render() {
     float screenWidth = Draw::GetWidth();
     float screenHeight = Draw::GetHeight();
 
