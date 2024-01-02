@@ -44,17 +44,16 @@ void NotifyVisualImageWood() {
 }
 
 void OnRender() {
-    // This function should be called every frame
     float screenWidth = Draw::GetWidth();
     float screenHeight = Draw::GetHeight();
 
     if (conditionForIce1) {
-        NotifyVisualImageIce(screenWidth, screenHeight);
+        NotifyVisualImageIce();
     }
     if (conditionForIce2) {
-        NotifyVisualImageIce2(screenWidth, screenHeight);
+        NotifyVisualImageIce2();
     }
     if (conditionForWood) {
-        NotifyVisualImageWood(screenWidth, screenHeight);
+        NotifyVisualImageWood();
     }
 }
