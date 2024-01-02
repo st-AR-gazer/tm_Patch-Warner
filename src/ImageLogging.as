@@ -6,6 +6,7 @@ float animationStartTime = 0;
 bool isAnimating = false;
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
+    print("test");
     float animationDuration = 2.0;
     float stayDuration = 5.0;
 
