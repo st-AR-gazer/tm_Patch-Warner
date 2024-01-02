@@ -10,10 +10,10 @@ void StartAnimation() {
     isAnimating = true;
 }
 
-void DrawImageAtFixedPosition(const string &in imagePath, float screenWidth, float screenHeight) {
+void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
     // Image dimensions
     float imageWidth = screenWidth / 9;
-    float aspectRatio = 322.0f / 304.0f;
+    float aspectRatio = 322.0f / 304.0f; // height / width of the original image
     float imageHeight = imageWidth * aspectRatio;
 
     // Fixed position at (0,0)
@@ -28,19 +28,6 @@ void DrawImageAtFixedPosition(const string &in imagePath, float screenWidth, flo
     nvg::FillPaint(imgPaint);
     nvg::Fill();
 }
-
-void NotifyVisualImageIce() {
-    DrawImageAtFixedPosition("/src/img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
-}
-
-void NotifyVisualImageIce2() {
-    DrawImageAtFixedPosition("/src/img/ice2.png", Draw::GetWidth(), Draw::GetHeight());
-}
-
-void NotifyVisualImageWood() {
-    DrawImageAtFixedPosition("/src/img/wood.png", Draw::GetWidth(), Draw::GetHeight());
-}
-
 
 void NotifyVisualImageIce() {
     UpdateAndDrawImage("/src/img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
