@@ -42,3 +42,19 @@ void NotifyVisualImageIce2() {
 void NotifyVisualImageWood() {
     UpdateAndDrawImage("/src/img/wood.png", Draw::GetWidth(), Draw::GetHeight());
 }
+
+void OnRender() {
+    // This function should be called every frame
+    float screenWidth = Draw::GetWidth();
+    float screenHeight = Draw::GetHeight();
+
+    if (conditionForIce1) {
+        NotifyVisualImageIce(screenWidth, screenHeight);
+    }
+    if (conditionForIce2) {
+        NotifyVisualImageIce2(screenWidth, screenHeight);
+    }
+    if (conditionForWood) {
+        NotifyVisualImageWood(screenWidth, screenHeight);
+    }
+}

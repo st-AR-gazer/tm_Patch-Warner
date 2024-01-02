@@ -1,6 +1,9 @@
 auto fidFile;
 
 bool isMapLoaded = false;
+bool conditionForIce1 = false;
+bool conditionForIce2 = false;
+bool conditionForWood = false;
 
 void Main() {
     while (true) {
@@ -12,6 +15,7 @@ void Main() {
 void Update() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
+
 
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) {
@@ -28,6 +32,9 @@ void Update() {
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
     if (fidFile is null) { 
         isMapLoaded = false;
+        conditionForIce1 = false;
+        conditionForIce2 = false;
+        conditionForWood = false;
         return;
     }
 
@@ -52,7 +59,7 @@ void OnMapLoad() {
 
     if (exeBuild < "2022-05-19_15_03") {
         if (doVisualImageInducator) {
-            NotifyVisualImageWood();
+            conditionForIce1 = true;
         } else {
             log("The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.", LogLevel::Warn, 49);
             NotifyWarnIce("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the first ice update, the medal times may be affected.");
@@ -60,7 +67,8 @@ void OnMapLoad() {
     }
     if (exeBuild < "2023-04-28_17_34" && exeBuild >= "2022-05-19_15_03") {
         if (doVisualImageInducator) {
-            NotifyVisualImageIce2();
+            conditionForIce2 = true;
+
         } else {
             log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn, 52);
             NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
@@ -69,7 +77,7 @@ void OnMapLoad() {
     
     if (exeBuild < "2023-11-15_11_56") {
         if (doVisualImageInducator) {
-            NotifyVisualImageIce();
+            conditionForWood = true;
         } else {
             log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn, 58);
             NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
