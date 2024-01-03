@@ -6,7 +6,7 @@ float animationStartTime = 0;
 bool isAnimating = false;
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
-    print("test");
+    // print("test");
     float animationDuration = 2.0;
     float stayDuration = 5.0;
 
@@ -15,7 +15,7 @@ void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float scr
     float aspectRatio = 322.0f / 304.0f;
     float imageHeight = imageWidth * aspectRatio;
 
-    float startY = -imageHeight;
+    float startY = 0;
     float endY = screenHeight / 4;
 
     float currentTime = Time::get_Now();
@@ -37,7 +37,7 @@ void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float scr
     }
 
     nvg::Texture@ texture = nvg::LoadTexture(imagePath);
-    nvg::Paint imgPaint = nvg::TexturePattern(vec2(0, yPos), vec2(imageWidth, imageHeight), 0, texture, 1.0f);
+    nvg::Paint imgPaint = nvg::TexturePattern(vec2(0, yPos), vec2(100, 100), 0, texture, 1.0f);
     nvg::BeginPath();
     nvg::Rect(0, yPos, imageWidth, imageHeight);
     nvg::FillPaint(imgPaint);
@@ -74,9 +74,6 @@ void NotifyVisualImageWood() {
 }
 
 void Render() {
-    float screenWidth = Draw::GetWidth();
-    float screenHeight = Draw::GetHeight();
-
     if (conditionForIce1) {
         NotifyVisualImageIce();
     }
