@@ -30,8 +30,8 @@ void Render() {
 }*/
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
-    imgSize = vec2(322, 304);
-    imgPos = vec2(screenWidth / 4 - imgSize.x / 2, screenHeight - screenHeight);
+    auto imgSize = vec2(322, 304);
+    auto imgPos = vec2(screenWidth / 4 - imgSize.x / 2, screenHeight - screenHeight);
 
 
     nvg::Texture@ texture = nvg::LoadTexture("src/img/wood.png");
