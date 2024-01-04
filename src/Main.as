@@ -26,11 +26,11 @@ void MapCheck() {
     }
 
     auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
-    print("script is null");
+    if (script is null) print("script is null");
     if (script is null) return; 
 
     auto scene = cast<ISceneVis@>(app.GameScene);
-    print("scene is null");
+    if (scene is null) print("scene is null");
     if (scene is null) return;
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
@@ -43,6 +43,8 @@ void MapCheck() {
         hasPlayedOnThisMap = false;
         return;
     }
+
+    print("nothing is null");
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 35);
