@@ -7,14 +7,6 @@ bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
 void Main() {
-    log("Main function started.", LogLevel::Info, 10);
-    loadTextures();
-    StartMapCheck();
-    log("After Load Textures.", LogLevel::Info, 12);
-    
-}
-
-void StartMapCheck() {
     while (true) {
         MapCheck();
         sleep(500);
