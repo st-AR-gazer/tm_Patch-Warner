@@ -7,7 +7,7 @@ bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
 void Main() {
-    LoadAllTextures();
+    loadTextures();
     while (true) {
         MapCheck();
         sleep(500);
