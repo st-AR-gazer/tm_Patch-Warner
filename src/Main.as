@@ -42,14 +42,17 @@ void MapCheck() {
         conditionForWood = false;
         hasPlayedOnThisMap = false;
         return;
+    } else {
+        isMapLoaded = true;
     }
 
     print("nothing is null");
 
-    if (!isMapLoaded) {
+    print(isMapLoaded);
+
+    if (isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 35);
         OnMapLoad();
-        isMapLoaded = true;
         log("Map load check completed.", LogLevel::Info, 38);
     }
 }
