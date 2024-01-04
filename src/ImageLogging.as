@@ -40,7 +40,7 @@ void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float scr
 
     nvg::BeginPath();
     nvg::Rect(imgPos, imgSize);
-    nvg::FillPaint(nvg::TexturePattern(imgPos, imgSize, 0, @texture, 1.0f));
+    nvg::FillPaint(nvg::TexturePattern(imgPos, imgSize, 0, texture, 1.0f));
     nvg::Fill();
     nvg::ClosePath();
 }
