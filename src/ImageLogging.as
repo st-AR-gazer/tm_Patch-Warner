@@ -2,10 +2,10 @@
 bool doVisualImageInducator = true;
 
 
-dictionary<string, nvg::Texture@> loadedTextures;
+nvg::Texture@[] loadedTextures;
 
 void LoadTexture(const string &in path) {
-    if (!loadedTextures.exists(path)) {
+    if (loadedTextures.Find(path) == -1) {
         @loadedTextures[path] = nvg::LoadTexture(path);
     }
 }
