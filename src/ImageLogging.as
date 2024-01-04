@@ -13,7 +13,7 @@ void loadTextures() {
 }
 
 void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
-    print(texture.GetSize().ToString());
+    log("Drawing texture", LogLevel::Info, 16);
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
@@ -37,14 +37,20 @@ void NotifyVisualImageWood() {
 }
 
 void Render() {
+    if (conditionForWood) {
+        log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
+
+        NotifyVisualImageWood();
+    }
     if (conditionForIce1) {
+        log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
+
         NotifyVisualImageIce();
     }
     if (conditionForIce2) {
+        log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
+
         NotifyVisualImageIce2();
-    }
-    if (true) {
-        NotifyVisualImageWood();
     }
 }
 
