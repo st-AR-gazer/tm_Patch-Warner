@@ -10,7 +10,7 @@ void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float scr
     auto imageHeight = 304;
 
     nvg::Texture@ texture = nvg::LoadTexture(imagePath);
-    nvg::Paint imgPaint = nvg::TexturePattern(vec2(0, 0), vec2(100, 100), 0, texture, 1.0f);
+    nvg::Paint imgPaint = nvg::TexturePattern(vec2(0, 0), vec2(322, 304), 0, texture, 1.0f);
     nvg::BeginPath();
     nvg::Rect(0, 0, imageWidth, imageHeight);
     nvg::FillPaint(imgPaint);
