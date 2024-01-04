@@ -1,17 +1,21 @@
 [Setting category="General" name="Use Visual Image Indicator" description="Use a visual image indicator instead of the default text indicator"]
 bool doVisualImageInducator = true;
 
+nvg::Texture@ texture;
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
     auto imageWidth = 322;
     auto imageHeight = 304;
 
+
     nvg::Texture@ texture = nvg::LoadTexture(imagePath);
-    nvg::Paint imgPaint = nvg::TexturePattern(vec2(0, 0), vec2(322, 304), 0, texture, 1.0f);
+    //nvg::Paint imgPaint = ;
+
     nvg::BeginPath();
     nvg::Rect(0, 0, imageWidth, imageHeight);
-    nvg::FillPaint(imgPaint);
+    nvg::FillPaint(nvg::TexturePattern(vec2(0, 0), vec2(322, 304), 0, @texture, 1.0f));
     nvg::Fill();
+    nvg::ClosePath();
 }
 
 void NotifyVisualImageIce() {
