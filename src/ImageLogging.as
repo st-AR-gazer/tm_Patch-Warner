@@ -30,6 +30,8 @@ void Render() {
 }*/
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
+    nvg::Reset();
+
     auto imgSize = vec2(322, 304);
     auto imgPos = vec2(screenWidth / 4 - imgSize.x / 2, screenHeight - screenHeight);
 
