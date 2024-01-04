@@ -18,15 +18,15 @@ void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float scr
 }
 
 void NotifyVisualImageIce() {
-    UpdateAndDrawImage("src/img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
+    UpdateAndDrawImage("img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
 }
 
 void NotifyVisualImageIce2() {
-    UpdateAndDrawImage("src/img/ice2.png", Draw::GetWidth(), Draw::GetHeight());
+    UpdateAndDrawImage("img/ice2.png", Draw::GetWidth(), Draw::GetHeight());
 }
 
 void NotifyVisualImageWood() {
-    UpdateAndDrawImage("src/img/wood.png", Draw::GetWidth(), Draw::GetHeight());
+    UpdateAndDrawImage("img/wood.png", Draw::GetWidth(), Draw::GetHeight());
 }
 
 void Render() {
