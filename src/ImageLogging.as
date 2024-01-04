@@ -1,19 +1,44 @@
 [Setting category="General" name="Use Visual Image Indicator" description="Use a visual image indicator instead of the default text indicator"]
 bool doVisualImageInducator = true;
 
-nvg::Texture@ texture;
+
+
+
+
+
+
+
+
+/*nvg::Texture@ texture;
+
+void loadTextureDirect(const string &in path) {
+    @texture = nvg::LoadTexture(path);
+}
+
+void Render() {
+    if (texture is null) {
+        loadTextureDirect("src/img/wood.png");
+    }
+
+    vec2 pos = vec2(0, 0);
+    vec2 size = vec2(500, 200);
+    nvg::BeginPath();
+    nvg::Rect(pos, size);
+    nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, 1.0f));
+    nvg::Fill();
+    nvg::ClosePath();
+}*/
 
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
-    auto imageWidth = 322;
-    auto imageHeight = 304;
+    imgSize = vec2(322, 304);
+    imgPos = vec2(screenWidth / 4 - imgSize.x / 2, screenHeight - screenHeight);
 
 
-    nvg::Texture@ texture = nvg::LoadTexture(imagePath);
-    //nvg::Paint imgPaint = ;
+    nvg::Texture@ texture = nvg::LoadTexture("src/img/wood.png");
 
     nvg::BeginPath();
-    nvg::Rect(0, 0, imageWidth, imageHeight);
-    nvg::FillPaint(nvg::TexturePattern(vec2(0, 0), vec2(322, 304), 0, @texture, 1.0f));
+    nvg::Rect(imgPos, imgSize);
+    nvg::FillPaint(nvg::TexturePattern(imgPos, imgSize, 0, @texture, 1.0f));
     nvg::Fill();
     nvg::ClosePath();
 }
@@ -37,7 +62,8 @@ void Render() {
     if (conditionForIce2) {
         NotifyVisualImageIce2();
     }
-    if (conditionForWood) {
+    if (true) {
         NotifyVisualImageWood();
     }
 }
+
