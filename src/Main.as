@@ -7,13 +7,14 @@ bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
 void Main() {
+    LoadAllTextures();
     while (true) {
-        Update();
+        MapCheck();
         sleep(500);
     }
 }
 
-void Update() {
+void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
 

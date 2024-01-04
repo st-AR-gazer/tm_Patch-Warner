@@ -2,59 +2,43 @@
 bool doVisualImageInducator = true;
 
 
+dictionary<string, nvg::Texture@> loadedTextures;
 
-
-
-
-
-
-
-/*nvg::Texture@ texture;
-
-void loadTextureDirect(const string &in path) {
-    @texture = nvg::LoadTexture(path);
+void LoadTexture(const string &in path) {
+    if (!loadedTextures.exists(path)) {
+        @loadedTextures[path] = nvg::LoadTexture(path);
+    }
 }
 
-void Render() {
-    if (texture is null) {
-        loadTextureDirect("src/img/wood.png");
-    }
-
-    vec2 pos = vec2(0, 0);
-    vec2 size = vec2(500, 200);
-    nvg::BeginPath();
-    nvg::Rect(pos, size);
-    nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, 1.0f));
-    nvg::Fill();
-    nvg::ClosePath();
-}*/
-
-void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
+void UpdateAndDrawImage(nvg::Texture@ texture, float screenWidth, float screenHeight) {
     nvg::Reset();
 
     auto imgSize = vec2(322, 304);
     auto imgPos = vec2(screenWidth / 4 - imgSize.x / 2, screenHeight - screenHeight);
 
-
-    nvg::Texture@ texture = nvg::LoadTexture("src/img/wood.png");
-
     nvg::BeginPath();
     nvg::Rect(imgPos, imgSize);
-    nvg::FillPaint(nvg::TexturePattern(imgPos, imgSize, 0, texture, 1.0f));
+    nvg::FillPaint(nvg::TexturePattern(imgPos, imgSize, 0, @texture, 1.0f));
     nvg::Fill();
     nvg::ClosePath();
 }
 
+void LoadAllTextures() {
+    LoadTexture("src/img/ice1.png");
+    LoadTexture("src/img/ice2.png");
+    LoadTexture("src/img/wood.png");
+}
+
 void NotifyVisualImageIce() {
-    UpdateAndDrawImage("src/img/ice1.png", Draw::GetWidth(), Draw::GetHeight());
+    UpdateAndDrawImage(loadedTextures["src/img/ice1.png"], Draw::GetWidth(), Draw::GetHeight());
 }
 
 void NotifyVisualImageIce2() {
-    UpdateAndDrawImage("src/img/ice2.png", Draw::GetWidth(), Draw::GetHeight());
+    UpdateAndDrawImage(loadedTextures["src/img/ice2.png"], Draw::GetWidth(), Draw::GetHeight());
 }
 
 void NotifyVisualImageWood() {
-    UpdateAndDrawImage("src/img/wood.png", Draw::GetWidth(), Draw::GetHeight());
+    UpdateAndDrawImage(loadedTextures["src/img/wood.png"], Draw::GetWidth(), Draw::GetHeight());
 }
 
 void Render() {
