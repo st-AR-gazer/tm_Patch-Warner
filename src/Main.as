@@ -15,23 +15,27 @@ void Main() {
 
 void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
+    if (app is null) print("app is null");
     if (app is null) return;
-
 
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) {
         isMapLoaded = false;
+        print("playground is null");
         return;
     }
 
     auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
+    print("script is null");
     if (script is null) return; 
 
     auto scene = cast<ISceneVis@>(app.GameScene);
+    print("scene is null");
     if (scene is null) return;
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
     if (fidFile is null) { 
+        print("fidFile is null");
         isMapLoaded = false;
         conditionForIce1 = false;
         conditionForIce2 = false;
