@@ -2,9 +2,6 @@
 bool doVisualImageInducator = true;
 
 
-float animationStartTime = 0;
-bool isAnimating = false;
-
 void UpdateAndDrawImage(const string &in imagePath, float screenWidth, float screenHeight) {
     auto imageWidth = 322;
     auto imageHeight = 304;
