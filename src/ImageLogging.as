@@ -13,7 +13,7 @@ void loadTextures() {
 }
 
 void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
-    print(texture.GetSize());
+    print(texture.GetSize().ToString());
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
