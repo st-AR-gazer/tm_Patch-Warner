@@ -12,6 +12,12 @@ void loadTextures() {
     @textureIce2 = nvg::LoadTexture("src/img/ice2.png");
 }
 
+void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
+    for (int i = 0; i < count; i++) {
+        drawTexture(textures[i], i);
+    }
+}
+
 void drawTexture(nvg::Texture@ texture, int index = 0) {
     log("Drawing texture", LogLevel::Info, 16);
 
@@ -39,18 +45,28 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 }
 
 void Render() {
-    int imageIndex = 0;
-
     if (conditionForWood) {
         log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
-        drawTexture(textureWood, imageIndex++);
-    }
-    if (conditionForIce1) {
+        drawTexture(textureWood, 0);
+    } else if (conditionForIce1) {
         log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
-        drawTexture(textureIce1, imageIndex++);
-    }
-    if (conditionForIce2) {
+        drawTexture(textureIce1, 0);
+    } else if (conditionForIce2) {
         log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
-        drawTexture(textureIce2, imageIndex++);
+        drawTexture(textureIce2, 0);
+    }
+
+    if (conditionForWood && conditionForIce1) {
+        log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 16);
+        array<nvg::Texture@> textures = {textureWood, textureIce1};
+        drawMultipleTextures(textures, 2);
+    } else if (conditionForWood && conditionForIce2) {
+        log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
+        array<nvg::Texture@> textures = {textureWood, textureIce2};
+        drawMultipleTextures(textures, 2);
+    } else if (conditionForIce1 && conditionForIce2) {
+        log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
+        array<nvg::Texture@> textures = {textureIce1, textureIce2};
+        drawMultipleTextures(textures, 2);
     }
 }
