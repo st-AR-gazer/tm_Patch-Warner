@@ -52,8 +52,8 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
 bool shouldDisplay(uint triggeredTime) {
     uint currentTime = Time::Now;
-    log("Current time: " + currentTime + " " + "Triggered time: " + triggeredTime + " display duration: " + displayDuration, LogLevel::Info, 55);
-    return currentTime - triggeredTime < displayDuration;
+    if (currentTime - triggeredTime < displayDuration) return true; 
+    return false;
 }
 
 void Render() {
@@ -86,7 +86,7 @@ void Render() {
     if (conditionForWood && conditionForIce1) {
         if (shouldDisplay(timeWoodTriggered) && shouldDisplay(timeIce1Triggered)) {
             array<nvg::Texture@> textures = {textureWood, textureIce1};
-            drawMultipleTextures(textures, textures.Length);
+            drawMultipleTextures(textures, 2);
         } else {
             timeWoodTriggered = Time::Now;
             timeIce1Triggered = Time::Now;
@@ -96,7 +96,7 @@ void Render() {
     if (conditionForWood && conditionForIce2) {
         if (shouldDisplay(timeWoodTriggered) && shouldDisplay(timeIce2Triggered)) {
             array<nvg::Texture@> textures = {textureWood, textureIce2};
-            drawMultipleTextures(textures, textures.Length);
+            drawMultipleTextures(textures, 2);
         } else {
             timeWoodTriggered = Time::Now;
             timeIce2Triggered = Time::Now;
@@ -106,7 +106,7 @@ void Render() {
     if (conditionForIce1 && conditionForIce2) {
         if (shouldDisplay(timeIce1Triggered) && shouldDisplay(timeIce2Triggered)) {
             array<nvg::Texture@> textures = {textureIce1, textureIce2};
-            drawMultipleTextures(textures, textures.Length);
+            drawMultipleTextures(textures, 2);
         } else {
             timeIce1Triggered = Time::Now;
             timeIce2Triggered = Time::Now;
