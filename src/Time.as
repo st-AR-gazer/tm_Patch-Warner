@@ -4,6 +4,7 @@ int CountdownTime;
 bool startCountdown = false;
 
 void time() {
+    print(CountdownTime);
     if (startCountdown) {
         uint CurrentTime = Time::get_Now();
 
