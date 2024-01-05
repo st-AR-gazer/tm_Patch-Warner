@@ -18,6 +18,9 @@ void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
     }
 }
 
+[Setting category="General" name="XOffset" description="XOffset of the visual display"]
+float xOffsetDrawing = 0.1f;
+
 void drawTexture(nvg::Texture@ texture, int index = 0) {
     log("Drawing texture", LogLevel::Info, 16);
 
@@ -27,11 +30,12 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     float imageSize = screenHeight * 0.2f;
     float imageWidth = imageSize * aspectRatio;
 
-    float xOffset = screenWidth * 0.25f;
-
+    float xOffset = screenWidth * xOffsetDrawing;
     xOffset += (imageWidth + (imageWidth * 0.125f)) * index;
 
-    auto pos = vec2(xOffset, screenHeight / screenHeight ); 
+    float yOffset = screenHeight / screenHeight - 1;
+
+    auto pos = vec2(xOffset, yOffset); 
     auto size = vec2(imageWidth, imageSize);
 
     if (texture !is null) {
