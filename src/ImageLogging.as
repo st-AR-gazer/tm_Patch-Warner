@@ -33,7 +33,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     float imageSize = screenHeight * 0.2f;
     float imageWidth = imageSize * aspectRatio;
 
-    float xOffset = screenWidth * 0.25f;
+    float xOffset = screenWidth * 0.1f;
 
     xOffset += (imageWidth + (imageWidth * 0.125f)) * index;
 
