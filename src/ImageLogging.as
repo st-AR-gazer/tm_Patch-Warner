@@ -73,33 +73,33 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 void Render() {
     if (!conditionForIce1 && !conditionForIce2) {
         if (conditionForWood) {
-            // log("Condition for drawing texture met: Only Wood", LogLevel::Info, 16);
+            // log("Condition for drawing texture met: Only Wood", LogLevel::Info, 76);
             drawTexture(textureWood, 0);
         }    
     }
     if (!conditionForWood && !conditionForIce2) {
         if (conditionForIce1) {
-            // log("Condition for drawing texture met: Only Ice1", LogLevel::Info, 16);
+            // log("Condition for drawing texture met: Only Ice1", LogLevel::Info, 82);
             drawTexture(textureIce1, 0);
         } 
     }
     if (!conditionForWood && !conditionForIce1) {
         if (conditionForIce2) {
-            // log("Condition for drawing texture met: Only Ice2", LogLevel::Info, 16);
+            // log("Condition for drawing texture met: Only Ice2", LogLevel::Info, 88);
             drawTexture(textureIce2, 0);
         }
     }
 
     if (conditionForWood && conditionForIce1) {
-        // log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 16);
+        // log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 94);
         array<nvg::Texture@> textures = {textureWood, textureIce1};
         drawMultipleTextures(textures, 2);
     } else if (conditionForWood && conditionForIce2) {
-        // log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
+        // log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 98);
         array<nvg::Texture@> textures = {textureWood, textureIce2};
         drawMultipleTextures(textures, 2);
     } else if (conditionForIce1 && conditionForIce2) { // cannot happen btw xdd
-        // log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
+        // log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 102);
         array<nvg::Texture@> textures = {textureIce1, textureIce2};
         drawMultipleTextures(textures, 2);
     }
