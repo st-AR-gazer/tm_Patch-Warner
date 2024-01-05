@@ -39,13 +39,13 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     auto pos = vec2(xOffset, yOffset); 
     auto size = vec2(imageWidth, imageSize);
 
-    float transparancy = CountdownTime / 6000;
+//    float transparancy = CountdownTime / 6000.0f;
 
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
         nvg::Rect(pos, size);
-        nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, transparancy));
+        nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, 1.0f));
         nvg::Fill();
         nvg::ClosePath();
     }
