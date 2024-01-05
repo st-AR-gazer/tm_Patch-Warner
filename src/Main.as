@@ -24,6 +24,10 @@ void MapCheck() {
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) {
         isMapLoaded = false;
+        conditionForIce1 = false;
+        conditionForIce2 = false;
+        conditionForWood = false;
+        hasPlayedOnThisMap = false;
         return;
     }
 
