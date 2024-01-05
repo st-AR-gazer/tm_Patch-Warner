@@ -12,8 +12,13 @@ void loadTextures() {
     @textureIce2 = nvg::LoadTexture("path/to/ice2.png");
 }
 
-void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
+void drawTexture(nvg::Texture@ texture) {
     log("Drawing texture", LogLevel::Info, 16);
+
+
+    auto pos = vec2(200, 0);
+    auto size = vec2(200, 0);
+
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
@@ -25,15 +30,15 @@ void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
 }
 
 void NotifyVisualImageIce() {
-    drawTexture(textureWood, vec2(0, 0), vec2(500, 200));
+    drawTexture(textureWood);
 }
 
 void NotifyVisualImageIce2() {
-    drawTexture(textureIce1, vec2(100, 100), vec2(500, 200));
+    drawTexture(textureIce1);
 }
 
 void NotifyVisualImageWood() {
-    drawTexture(textureIce2, vec2(100, 100), vec2(500, 200));
+    drawTexture(textureIce2);
 }
 
 void Render() {
