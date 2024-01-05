@@ -2,17 +2,17 @@
 int warningMessageLength = 6000;
 
 void NotifyWarn(const string &in msg) { // Wood
-    UI::ShowNotification("Warning message", msg + "\n" + "\\$b86" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
+    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$b86" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
 void NotifyWarnIce(const string &in msg) { // Ice Gen1
-    UI::ShowNotification("Warning message", msg + "\n" + "\\$3cf" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
+    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$3cf" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
 void NotifyWarnIce2(const string &in msg) { // Ice Gen2
-    UI::ShowNotification("Warning message", msg + "\n" + "\\$afe" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
+    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$afe" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
 
 void NotifyInfo(const string &in msg) {
-    UI::ShowNotification("Info message", msg, vec4(.3, 1, .1, .5), 10000);
+    UI::ShowNotification("Patch Warner", msg, vec4(.3, 1, .1, .5), 10000);
 }
 
 enum LogLevel {
