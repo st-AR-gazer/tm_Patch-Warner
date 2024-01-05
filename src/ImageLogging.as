@@ -64,7 +64,7 @@ void Render() {
         log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureWood, textureIce2};
         drawMultipleTextures(textures, 2);
-    } else if (conditionForIce1 && conditionForIce2) {
+    } else if (conditionForIce1 && conditionForIce2) { // cannot happen btw xdd
         log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureIce1, textureIce2};
         drawMultipleTextures(textures, 2);
