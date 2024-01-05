@@ -41,6 +41,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
 //    float transparancy = CountdownTime / 6000.0f;
 
+    if (CountdownTime == 0) return;
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
