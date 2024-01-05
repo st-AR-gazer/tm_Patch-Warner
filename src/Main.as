@@ -8,14 +8,11 @@ bool hasPlayedOnThisMap = false;
 
 void Main() {
     loadTextures();
-    while (true) {
-        MapCheck();
-        sleep(500);
-    }
 }
 
 void Update() {
     time();
+    MapCheck();
 }
 
 void MapCheck() {
