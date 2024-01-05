@@ -1,5 +1,5 @@
 [Setting category="General" name="Use Visual Image Indicator" description="Use a visual image indicator instead of the default text indicator"]
-bool doVisualImageInducator = true;
+bool doVisualImageInducator = false;
 
 
 nvg::Texture@ textureWood;
@@ -22,13 +22,20 @@ void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
 [Setting category="General" name="XOffset" description="XOffset of the visual display"]
 float xOffsetDrawing = 0.1f;
 
-void drawTexture(nvg::Texture@ texture, int index = 0) {
-    log("Drawing texture", LogLevel::Info, 16);
+[Setting category="General" name="YOffset" description="YOffset of the visual display"]
+float custYOffest = 0.0f;
 
+[Setting category="General" name="Image Size" description="Size of the visual image"]
+float custImageSize = 0.1f;
+
+
+
+
+void drawTexture(nvg::Texture@ texture, int index = 0) {
     float aspectRatio = 304.0f / 322.0f;
     float screenWidth = Draw::GetWidth();
     float screenHeight = Draw::GetHeight();
-    float imageSize = screenHeight * 0.1f;
+    float imageSize = screenHeight * custImageSize;
     float imageWidth = imageSize * aspectRatio;
 
     float xOffset = screenWidth * xOffsetDrawing;
@@ -36,17 +43,28 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
     float yOffset = screenHeight / screenHeight - 1;
 
-    auto pos = vec2(xOffset, yOffset); 
+    auto pos = vec2(xOffset, yOffset + (custYOffest * screenHeight)); 
     auto size = vec2(imageWidth, imageSize);
 
-//    float transparancy = CountdownTime / 6000.0f;
+    float transparancy;
+    if (CountdownTime > 8000) { // start 
+        transparancy = 1.0f - ((CountdownTime - 8000) / 3000.0f);
+    } else if (CountdownTime > 3000) { // middle
+        transparancy = 1.0f;
+    } else { // end
+        transparancy = CountdownTime / 3000.0f;
+    }
+    print(CountdownTime);
+    transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
+
 
     if (CountdownTime == 0) return;
+    
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
         nvg::Rect(pos, size);
-        nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, 1.0f));
+        nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, transparancy));
         nvg::Fill();
         nvg::ClosePath();
     }
@@ -55,33 +73,33 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 void Render() {
     if (!conditionForIce1 && !conditionForIce2) {
         if (conditionForWood) {
-            log("Condition for drawing texture met: Only Wood", LogLevel::Info, 16);
+            // log("Condition for drawing texture met: Only Wood", LogLevel::Info, 16);
             drawTexture(textureWood, 0);
         }    
     }
     if (!conditionForWood && !conditionForIce2) {
         if (conditionForIce1) {
-            log("Condition for drawing texture met: Only Ice1", LogLevel::Info, 16);
+            // log("Condition for drawing texture met: Only Ice1", LogLevel::Info, 16);
             drawTexture(textureIce1, 0);
         } 
     }
     if (!conditionForWood && !conditionForIce1) {
         if (conditionForIce2) {
-            log("Condition for drawing texture met: Only Ice2", LogLevel::Info, 16);
+            // log("Condition for drawing texture met: Only Ice2", LogLevel::Info, 16);
             drawTexture(textureIce2, 0);
         }
     }
 
     if (conditionForWood && conditionForIce1) {
-        log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 16);
+        // log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureWood, textureIce1};
         drawMultipleTextures(textures, 2);
     } else if (conditionForWood && conditionForIce2) {
-        log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
+        // log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureWood, textureIce2};
         drawMultipleTextures(textures, 2);
     } else if (conditionForIce1 && conditionForIce2) { // cannot happen btw xdd
-        log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
+        // log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureIce1, textureIce2};
         drawMultipleTextures(textures, 2);
     }

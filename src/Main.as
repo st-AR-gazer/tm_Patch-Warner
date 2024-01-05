@@ -7,7 +7,7 @@ bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
-    time();
+    time(dt);
 }
 
 void Main() {
@@ -22,7 +22,6 @@ void Main() {
 void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
-
 
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) {
@@ -42,6 +41,7 @@ void MapCheck() {
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
     if (fidFile is null) { 
+        // log("fidFile is null in MapCheck.", LogLevel::Warn, 37);
         isMapLoaded = false;
         conditionForIce1 = false;
         conditionForIce2 = false;
@@ -50,8 +50,7 @@ void MapCheck() {
         return;
     }
 
-    startCountdown = true;
-    CountdownTime = 6000;
+    
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 49);
@@ -93,7 +92,11 @@ void OnMapLoad() {
             NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
         }
     }
+    CountdownTime = 11000;
+    // very imp ^^^
+
     log("OnMapLoad function finished.", LogLevel::Info, 88);
+    
 }
 
 class GbxHeaderChunkInfo

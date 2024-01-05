@@ -1,19 +1,33 @@
-int PreviousTime = 0;
-int CountdownTime;
+int absoluteStartTime = -1;
+auto PreviousCountdownTime;
 
-bool startCountdown = false;
+auto CountdownTime;
 
-void time() {
-    if (startCountdown) {
-        uint CurrentTime = Time::get_Now();
+int absolute(int value) {
+    return value < 0 ? -value : value;
+}
 
-        if (CountdownTime > 0) {
-            CountdownTime -= CurrentTime - PreviousTime;
-            if (CountdownTime < 0) CountdownTime = 0;
-        }
-
-        PreviousTime = CurrentTime;
-
-        if (CountdownTime == 0) startCountdown = false;
+void time(float dt) {
+    if (10 >= CountdownTime) {
+        CountdownTime = 10;
     }
+    
+    if (CountdownTime == 11000 && absoluteStartTime == -1) {
+        absoluteStartTime = Time::get_Now();
+    }
+
+    CountdownTime -= int(dt);
+
+    if (CountdownTime <= 0) {
+        absoluteStartTime = -1;
+    } else {
+        int elapsedTime = Time::get_Now() - absoluteStartTime;
+        int expectedCountdown = 11000 - elapsedTime;
+
+        if (absolute(CountdownTime - expectedCountdown) > 10) {
+            CountdownTime = expectedCountdown;
+        }
+    }
+
+    PreviousCountdownTime = CountdownTime;
 }
