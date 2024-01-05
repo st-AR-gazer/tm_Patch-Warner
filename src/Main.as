@@ -6,15 +6,15 @@ bool conditionForIce2 = false;
 bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
-void Update() {
+void Update(float dt) {
     print("test");
     time();
     MapCheck();
 }
 
-// void Main() {
-//    loadTextures();
-// }
+void Main() {
+    loadTextures();
+}
 
 
 void MapCheck() {
