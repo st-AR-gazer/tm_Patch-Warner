@@ -25,7 +25,7 @@ void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
 }
 
 void drawTexture(nvg::Texture@ texture, int index = 0) {
-    log("Drawing texture", LogLevel::Info, 16);
+    log("Drawing texture", LogLevel::Info, 28);
 
     float aspectRatio = 304.0f / 322.0f;
     float screenWidth = Draw::GetWidth();
@@ -52,6 +52,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
 bool shouldDisplay(uint triggeredTime) {
     uint currentTime = Time::Now;
+    log("Current time: " + currentTime + " " + "Triggered time: " + triggeredTime + " display duration: " + displayDuration, LogLevel::Info, 55);
     return currentTime - triggeredTime < displayDuration;
 }
 
