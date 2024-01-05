@@ -7,13 +7,15 @@ bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
-    print("test");
     time();
-    MapCheck();
 }
 
 void Main() {
     loadTextures();
+    while (true) {
+        MapCheck();
+        sleep(500);
+    }
 }
 
 
@@ -46,6 +48,7 @@ void MapCheck() {
         conditionForWood = false;
         hasPlayedOnThisMap = false;
         startCountdown = true;
+        CountdownTime = 6000;
         return;
     }
 

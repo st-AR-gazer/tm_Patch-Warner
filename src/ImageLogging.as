@@ -18,6 +18,7 @@ void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
     }
 }
 
+
 [Setting category="General" name="XOffset" description="XOffset of the visual display"]
 float xOffsetDrawing = 0.1f;
 
