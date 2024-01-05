@@ -2,6 +2,12 @@
 bool doVisualImageInducator = true;
 
 
+uint timeWoodTriggered = 0;
+uint timeIce1Triggered = 0;
+uint timeIce2Triggered = 0;
+
+const uint displayDuration = 5000;
+
 nvg::Texture@ textureWood;
 nvg::Texture@ textureIce1;
 nvg::Texture@ textureIce2;
@@ -44,29 +50,65 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     }
 }
 
+bool shouldDisplay(uint triggeredTime) {
+    uint currentTime = Time::Now;
+    return currentTime - triggeredTime < displayDuration;
+}
+
 void Render() {
+    // Single texture conditions
     if (conditionForWood) {
-        log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
-        drawTexture(textureWood, 0);
-    } else if (conditionForIce1) {
-        log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
-        drawTexture(textureIce1, 0);
-    } else if (conditionForIce2) {
-        log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
-        drawTexture(textureIce2, 0);
+        if (shouldDisplay(timeWoodTriggered)) {
+            drawTexture(textureWood, 0);
+        } else {
+            timeWoodTriggered = Time::Now;
+        }
     }
 
+    if (conditionForIce1) {
+        if (shouldDisplay(timeIce1Triggered)) {
+            drawTexture(textureIce1, 0);
+        } else {
+            timeIce1Triggered = Time::Now;
+        }
+    }
+
+    if (conditionForIce2) {
+        if (shouldDisplay(timeIce2Triggered)) {
+            drawTexture(textureIce2, 0);
+        } else {
+            timeIce2Triggered = Time::Now;
+        }
+    }
+
+    // Combination conditions
     if (conditionForWood && conditionForIce1) {
-        log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 16);
-        array<nvg::Texture@> textures = {textureWood, textureIce1};
-        drawMultipleTextures(textures, 2);
-    } else if (conditionForWood && conditionForIce2) {
-        log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
-        array<nvg::Texture@> textures = {textureWood, textureIce2};
-        drawMultipleTextures(textures, 2);
-    } else if (conditionForIce1 && conditionForIce2) { // cannot happen btw xdd
-        log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
-        array<nvg::Texture@> textures = {textureIce1, textureIce2};
-        drawMultipleTextures(textures, 2);
+        if (shouldDisplay(timeWoodTriggered) && shouldDisplay(timeIce1Triggered)) {
+            array<nvg::Texture@> textures = {textureWood, textureIce1};
+            drawMultipleTextures(textures, 2);
+        } else {
+            timeWoodTriggered = Time::Now;
+            timeIce1Triggered = Time::Now;
+        }
+    }
+
+    if (conditionForWood && conditionForIce2) {
+        if (shouldDisplay(timeWoodTriggered) && shouldDisplay(timeIce2Triggered)) {
+            array<nvg::Texture@> textures = {textureWood, textureIce2};
+            drawMultipleTextures(textures, 2);
+        } else {
+            timeWoodTriggered = Time::Now;
+            timeIce2Triggered = Time::Now;
+        }
+    }
+
+    if (conditionForIce1 && conditionForIce2) {
+        if (shouldDisplay(timeIce1Triggered) && shouldDisplay(timeIce2Triggered)) {
+            array<nvg::Texture@> textures = {textureIce1, textureIce2};
+            drawMultipleTextures(textures, 2);
+        } else {
+            timeIce1Triggered = Time::Now;
+            timeIce2Triggered = Time::Now;
+        }
     }
 }
