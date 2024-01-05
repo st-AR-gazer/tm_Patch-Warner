@@ -7,13 +7,12 @@ nvg::Texture@ textureIce1;
 nvg::Texture@ textureIce2;
 
 void loadTextures() {
-    @textureWood = nvg::LoadTexture("path/to/wood.png");
-    @textureIce1 = nvg::LoadTexture("path/to/ice1.png");
-    @textureIce2 = nvg::LoadTexture("path/to/ice2.png");
+    @textureWood = nvg::LoadTexture("src/img/wood.png");
+    @textureIce1 = nvg::LoadTexture("src/img/ice1.png");
+    @textureIce2 = nvg::LoadTexture("src/img/ice2.png");
 }
 
 void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
-    log("Drawing texture", LogLevel::Info, 16);
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
@@ -24,32 +23,26 @@ void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
     }
 }
 
-void NotifyVisualImageIce() {
+void NotifyVisualImageWood() {
     drawTexture(textureWood, vec2(0, 0), vec2(500, 200));
+}
+
+void NotifyVisualImageIce() {
+    drawTexture(textureIce2, vec2(100, 100), vec2(500, 200));
 }
 
 void NotifyVisualImageIce2() {
     drawTexture(textureIce1, vec2(100, 100), vec2(500, 200));
 }
 
-void NotifyVisualImageWood() {
-    drawTexture(textureIce2, vec2(100, 100), vec2(500, 200));
-}
-
 void Render() {
     if (conditionForWood) {
-        log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
-
         NotifyVisualImageWood();
     }
     if (conditionForIce1) {
-        log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
-
         NotifyVisualImageIce();
     }
     if (conditionForIce2) {
-        log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
-
         NotifyVisualImageIce2();
     }
 }
