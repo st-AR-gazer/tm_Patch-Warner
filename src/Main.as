@@ -14,6 +14,10 @@ void Main() {
     }
 }
 
+void Update() {
+    time();
+}
+
 void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
@@ -42,6 +46,7 @@ void MapCheck() {
         conditionForIce2 = false;
         conditionForWood = false;
         hasPlayedOnThisMap = false;
+        startCountdown = true;
         return;
     }
 

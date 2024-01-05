@@ -2,10 +2,6 @@
 bool doVisualImageInducator = true;
 
 
-
-
-const uint displayDuration = 5000;
-
 nvg::Texture@ textureWood;
 nvg::Texture@ textureIce1;
 nvg::Texture@ textureIce2;
@@ -23,7 +19,7 @@ void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
 }
 
 void drawTexture(nvg::Texture@ texture, int index = 0) {
-    log("Drawing texture", LogLevel::Info, 28);
+    log("Drawing texture", LogLevel::Info, 16);
 
     float aspectRatio = 304.0f / 322.0f;
     float screenWidth = Draw::GetWidth();
@@ -31,7 +27,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     float imageSize = screenHeight * 0.2f;
     float imageWidth = imageSize * aspectRatio;
 
-    float xOffset = screenWidth * 0.1f;
+    float xOffset = screenWidth * 0.25f;
 
     xOffset += (imageWidth + (imageWidth * 0.125f)) * index;
 
@@ -48,68 +44,29 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     }
 }
 
-bool shouldDisplay(uint triggeredTime) {
-    uint currentTime = Time::Now;
-    if (currentTime - triggeredTime < displayDuration) return true; 
-    return false;
-}
-
-uint timeWoodTriggered = 0;
-uint timeIce1Triggered = 0;
-uint timeIce2Triggered = 0;
-
-uint countdownTimeWood = 0;
-uint countdownTimeIce1 = 0;
-uint countdownTimeIce2 = 0;
-
 void Render() {
-    // Single texture conditions
-
-    updateCountdown(countdownTimeWood, displayDuration, timeWoodTriggered);
-    updateCountdown(countdownTimeIce1, displayDuration, timeIce1Triggered);
-    updateCountdown(countdownTimeIce2, displayDuration, timeIce2Triggered);
-    
-    if (conditionForWood && countdownTimeWood > 0) {
+    if (conditionForWood) {
+        log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
         drawTexture(textureWood, 0);
-    }
-
-    if (conditionForIce1 && countdownTimeIce1 > 0) {
+    } else if (conditionForIce1) {
+        log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
         drawTexture(textureIce1, 0);
-    }
-
-    if (conditionForIce2 && countdownTimeIce2 > 0) {
+    } else if (conditionForIce2) {
+        log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
         drawTexture(textureIce2, 0);
     }
 
-    // Combination conditions
-    if (conditionForWood && conditionForIce1 && countdownTimeWood > 0 && countdownTimeIce1 > 0) {
+    if (conditionForWood && conditionForIce1) {
+        log("Condition for drawing texture met: Wood and Ice1", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureWood, textureIce1};
         drawMultipleTextures(textures, 2);
-    }
-
-    if (conditionForWood && conditionForIce2 && countdownTimeWood > 0 && countdownTimeIce2 > 0) {
+    } else if (conditionForWood && conditionForIce2) {
+        log("Condition for drawing texture met: Wood and Ice2", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureWood, textureIce2};
         drawMultipleTextures(textures, 2);
-    }
-
-    if (conditionForIce1 && conditionForIce2 && countdownTimeIce1 > 0 && countdownTimeIce2 > 0) {
+    } else if (conditionForIce1 && conditionForIce2) { // cannot happen btw xdd
+        log("Condition for drawing texture met: Ice1 and Ice2", LogLevel::Info, 16);
         array<nvg::Texture@> textures = {textureIce1, textureIce2};
         drawMultipleTextures(textures, 2);
-    }
-
-    // Check if conditions are met to start the countdown
-    if (conditionForWood && timeWoodTriggered == -1) {
-        timeWoodTriggered = Time::Now;
-        countdownTimeWood = displayDuration;
-    }
-
-    if (conditionForIce1 && timeIce1Triggered == -1) {
-        timeIce1Triggered = Time::Now;
-        countdownTimeIce1 = displayDuration;
-    }
-
-    if (conditionForIce2 && timeIce2Triggered == -1) {
-        timeIce2Triggered = Time::Now;
-        countdownTimeIce2 = displayDuration;
     }
 }

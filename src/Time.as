@@ -1,16 +1,19 @@
-int absolute(int value) {
-    return value < 0 ? -value : value;
-}
+int PreviousTime = 0;
+int CountdownTime;
 
-void updateCountdown(int countdownTime, int duration, int startTime) {
-    int elapsedTime = Time::Now - startTime;
-    int expectedCountdown = duration - elapsedTime;
+bool startCountdown = false;
 
-    if (absolute(countdownTime - expectedCountdown) > 10) {
-        countdownTime = expectedCountdown;
-    }
+void time() {
+    if (startCountdown) {
+        uint CurrentTime = Time::get_Now();
 
-    if (countdownTime <= 0) {
-        startTime = -1;
+        if (CountdownTime > 0) {
+            CountdownTime -= CurrentTime - PreviousTime;
+            if (CountdownTime < 0) CountdownTime = 0;
+        }
+
+        PreviousTime = CurrentTime;
+
+        if (CountdownTime == 0) startCountdown = false;
     }
 }
