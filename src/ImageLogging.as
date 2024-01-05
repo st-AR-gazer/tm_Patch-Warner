@@ -6,6 +6,8 @@ nvg::Texture@ textureWood;
 nvg::Texture@ textureIce1;
 nvg::Texture@ textureIce2;
 
+
+
 void loadTextures() {
     @textureWood = nvg::LoadTexture("src/img/wood.png");
     @textureIce1 = nvg::LoadTexture("src/img/ice1.png");
@@ -50,6 +52,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
 void Render() {
     if (conditionForWood) {
+        loadTextures();
         log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
         drawTexture(textureWood, 0);
     } else if (conditionForIce1) {

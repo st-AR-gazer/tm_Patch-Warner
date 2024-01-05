@@ -12,9 +12,9 @@ void Update() {
     MapCheck();
 }
 
-void Main() {
-    loadTextures();
-}
+// void Main() {
+//    loadTextures();
+// }
 
 
 void MapCheck() {
