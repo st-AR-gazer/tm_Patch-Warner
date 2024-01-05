@@ -10,6 +10,7 @@ The script serves as tool that helps by notifying players of physics changes bas
 
 - **Point 1:** Automated detection of map's exeBuild version.
 - **Point 2:** Notifications for ice and wood physics changes based on exeBuild date.
+- **Point 2.5:** Notifications can also be done with images :yayy:
 - **Point 3:** File handling and XML parsing for game data extraction.
 
 ## ⚠️ Important Notes
@@ -22,7 +23,7 @@ The script serves as tool that helps by notifying players of physics changes bas
 
 ## How It Works
 
-- **Point 1:** On every game loop, the script checks if a map is loaded and fetches the map file details.
+- **Point 1:** Every 500, the script checks if a map is loaded and fetches the map file details.
 - **Point 2:** Extracts the exeBuild date from the map's XML data to determine the applicable physics.
 - **Point 3:** Based on the exeBuild date, the script notifies the player about the relevant physics updates affecting the map, such as ice or wood physics.
 
