@@ -6,14 +6,16 @@ bool conditionForIce2 = false;
 bool conditionForWood = false;
 bool hasPlayedOnThisMap = false;
 
+void Update() {
+    print("test");
+    time();
+    MapCheck();
+}
+
 void Main() {
     loadTextures();
 }
 
-void Update() {
-    time();
-    MapCheck();
-}
 
 void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
