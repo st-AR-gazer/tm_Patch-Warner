@@ -24,14 +24,14 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     float aspectRatio = 304.0f / 322.0f;
     float screenWidth = Draw::GetWidth();
     float screenHeight = Draw::GetHeight();
-    float imageSize = screenHeight * 0.08f;
+    float imageSize = screenHeight * 0.2f;
     float imageWidth = imageSize * aspectRatio;
 
     float xOffset = screenWidth * 0.25f;
 
     xOffset += (imageWidth + (imageWidth * 0.125f)) * index;
 
-    auto pos = vec2(xOffset, screenHeight / 2 - imageSize / 2);
+    auto pos = vec2(xOffset, screenHeight / screenHeight ); // some more logic is required here when animations are added (needs an offset)
     auto size = vec2(imageWidth, imageSize);
 
     if (texture !is null) {
