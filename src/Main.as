@@ -14,10 +14,6 @@ void Main() {
     }
 }
 
-void Update() {
-    UpdateTime();
-}
-
 void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
