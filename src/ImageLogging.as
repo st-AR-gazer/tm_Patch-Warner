@@ -39,26 +39,36 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     auto pos = vec2(xOffset, yOffset); 
     auto size = vec2(imageWidth, imageSize);
 
+    float transparancy = CountdownTime / 6000;
+
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
         nvg::Rect(pos, size);
-        nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, 1.0f));
+        nvg::FillPaint(nvg::TexturePattern(pos, size, 0.0f, @texture, transparancy));
         nvg::Fill();
         nvg::ClosePath();
     }
 }
 
 void Render() {
-    if (conditionForWood) {
-        log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
-        drawTexture(textureWood, 0);
-    } else if (conditionForIce1) {
-        log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
-        drawTexture(textureIce1, 0);
-    } else if (conditionForIce2) {
-        log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
-        drawTexture(textureIce2, 0);
+    if (!conditionForIce1 && !conditionForIce2) {
+        if (conditionForWood) {
+            log("Condition for drawing texture met: Only Wood", LogLevel::Info, 16);
+            drawTexture(textureWood, 0);
+        }    
+    }
+    if (!conditionForWood && !conditionForIce2) {
+        if (conditionForIce1) {
+            log("Condition for drawing texture met: Only Ice1", LogLevel::Info, 16);
+            drawTexture(textureIce1, 0);
+        } 
+    }
+    if (!conditionForWood && !conditionForIce1) {
+        if (conditionForIce2) {
+            log("Condition for drawing texture met: Only Ice2", LogLevel::Info, 16);
+            drawTexture(textureIce2, 0);
+        }
     }
 
     if (conditionForWood && conditionForIce1) {
