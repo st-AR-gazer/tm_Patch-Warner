@@ -6,6 +6,8 @@ bool startCountdown = false;
 void time() {
     print(CountdownTime);
     if (startCountdown) {
+        print(CountdownTime + " aaaaa");
+
         uint CurrentTime = Time::get_Now();
 
         if (CountdownTime > 0) {
