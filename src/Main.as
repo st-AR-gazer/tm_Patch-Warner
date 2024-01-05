@@ -47,10 +47,11 @@ void MapCheck() {
         conditionForIce2 = false;
         conditionForWood = false;
         hasPlayedOnThisMap = false;
-        startCountdown = true;
-        CountdownTime = 6000;
         return;
     }
+
+    startCountdown = true;
+    CountdownTime = 6000;
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 49);
