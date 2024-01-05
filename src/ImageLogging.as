@@ -28,7 +28,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     float aspectRatio = 304.0f / 322.0f;
     float screenWidth = Draw::GetWidth();
     float screenHeight = Draw::GetHeight();
-    float imageSize = screenHeight * 0.2f;
+    float imageSize = screenHeight * 0.1f;
     float imageWidth = imageSize * aspectRatio;
 
     float xOffset = screenWidth * xOffsetDrawing;
