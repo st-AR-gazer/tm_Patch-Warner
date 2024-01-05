@@ -12,7 +12,7 @@ void NotifyWarnIce2(const string &in msg) { // Ice Gen2
 }
 
 void NotifyInfo(const string &in msg) {
-    UI::ShowNotification("Patch Warner", msg, vec4(.3, 1, .1, .5), 10000);
+    UI::ShowNotification("Patch Warner", msg, vec4(.3, 1, .1, .5), warningMessageLength);
 }
 
 enum LogLevel {
