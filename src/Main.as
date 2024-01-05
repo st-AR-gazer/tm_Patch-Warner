@@ -57,16 +57,11 @@ void OnMapLoad() {
     string exeBuild = GetExeBuildFromXML();
     log("Exe build: " + exeBuild, LogLevel::Info, 58);
 
-    // if (doVisualImageInducator) {
-    //     log("Visual image indicator is enabled.", LogLevel::Info, 61);
-    //     NotifyVisualImage();
-    // }
-
     if (exeBuild < "2022-05-19_15_03") {
         if (doVisualImageInducator) {
             conditionForIce1 = true;
         } else {
-            log("The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.", LogLevel::Warn, 69);
+            log("The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.", LogLevel::Warn, 64);
             NotifyWarnIce("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the first ice update, the medal times may be affected.");
         }
     }
@@ -75,7 +70,7 @@ void OnMapLoad() {
             conditionForIce2 = true;
 
         } else {
-            log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn, 78);
+            log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn, 73);
             NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
         }
     }
@@ -84,11 +79,11 @@ void OnMapLoad() {
         if (doVisualImageInducator) {
             conditionForWood = true;
         } else {
-            log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn, 87);
+            log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn, 82);
             NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
         }
     }
-    log("OnMapLoad function finished.", LogLevel::Info, 91);
+    log("OnMapLoad function finished.", LogLevel::Info, 86);
 }
 
 class GbxHeaderChunkInfo
@@ -101,7 +96,7 @@ string GetExeBuildFromXML() {
     string xmlString = "";
     string exeBuild = "";
 
-    log("GetExeBuildFromXML function started.", LogLevel::Info, 104);
+    log("GetExeBuildFromXML function started.", LogLevel::Info, 99);
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetApp().RootMap.MapInfo.Fid);
 
@@ -109,13 +104,13 @@ string GetExeBuildFromXML() {
     {
         try
         {
-            log("Opening map file.", LogLevel::Info, 112);
+            log("Opening map file.", LogLevel::Info, 107);
             IO::File mapFile(fidFile.FullFileName);
             mapFile.Open(IO::FileMode::Read);
 
             mapFile.SetPos(17);
             int headerChunkCount = mapFile.Read(4).ReadInt32();
-            log("Header chunk count: " + headerChunkCount, LogLevel::Info, 118);
+            log("Header chunk count: " + headerChunkCount, LogLevel::Info, 113);
 
             GbxHeaderChunkInfo[] chunks = {};
             for (int i = 0; i < headerChunkCount; i++)
@@ -124,7 +119,7 @@ string GetExeBuildFromXML() {
                 newChunk.ChunkId = mapFile.Read(4).ReadInt32();
                 newChunk.ChunkSize = mapFile.Read(4).ReadInt32() & 0x7FFFFFFF;
                 chunks.InsertLast(newChunk);
-                log("Read chunk " + i + " with id " + newChunk.ChunkId + " and size " + newChunk.ChunkSize, LogLevel::Info, 127);
+                log("Read chunk " + i + " with id " + newChunk.ChunkId + " and size " + newChunk.ChunkSize, LogLevel::Info, 122);
             }
 
             for (uint i = 0; i < chunks.Length; i++)
@@ -135,7 +130,7 @@ string GetExeBuildFromXML() {
                     xmlString = chunkBuffer.ReadString(stringLength);
                     break;
                 }
-                log("Read chunk " + i + " of size " + chunks[i].ChunkSize, LogLevel::Info, 138);
+                log("Read chunk " + i + " of size " + chunks[i].ChunkSize, LogLevel::Info, 133);
             }
 
             mapFile.Close();
@@ -151,24 +146,24 @@ string GetExeBuildFromXML() {
                     if (potentialExeBuild != "") {
                         exeBuild = potentialExeBuild;
                     } else {
-                        log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn, 154);
+                        log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn, 149);
                         return "9999-99-99_99_99";
                     }
                 } else {
-                    log("headerNode is invalid in GetExeBuildFromXML.", LogLevel::Warn, 158);
+                    log("headerNode is invalid in GetExeBuildFromXML.", LogLevel::Warn, 153);
                 }
 
             }
-            log("GetExeBuildFromXML function finished.", LogLevel::Info, 162);
+            log("GetExeBuildFromXML function finished.", LogLevel::Info, 157);
         }
         catch
         {
-            log("Error reading map file in GetExeBuildFromXML.", LogLevel::Error, 166);
+            log("Error reading map file in GetExeBuildFromXML.", LogLevel::Error, 161);
         }
     }
     else
     {
-        log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn, 171);
+        log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn, 166);
     }
     return exeBuild;
 }

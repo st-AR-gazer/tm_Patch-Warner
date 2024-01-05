@@ -12,7 +12,22 @@ void loadTextures() {
     @textureIce2 = nvg::LoadTexture("src/img/ice2.png");
 }
 
-void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
+void drawTexture(nvg::Texture@ texture, int index = 0) {
+    log("Drawing texture", LogLevel::Info, 16);
+
+    float aspectRatio = 304.0f / 322.0f;
+    float screenWidth = Draw::GetWidth();
+    float screenHeight = Draw::GetHeight();
+    float imageSize = screenHeight * 0.08f;
+    float imageWidth = imageSize * aspectRatio;
+
+    float xOffset = screenWidth * 0.25f;
+
+    xOffset += (imageWidth + (imageWidth * 0.125f)) * index;
+
+    auto pos = vec2(xOffset, screenHeight / 2 - imageSize / 2);
+    auto size = vec2(imageWidth, imageSize);
+
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
@@ -23,27 +38,19 @@ void drawTexture(nvg::Texture@ texture, vec2 pos, vec2 size) {
     }
 }
 
-void NotifyVisualImageWood() {
-    drawTexture(textureWood, vec2(0, 0), vec2(500, 200));
-}
-
-void NotifyVisualImageIce() {
-    drawTexture(textureIce2, vec2(100, 100), vec2(500, 200));
-}
-
-void NotifyVisualImageIce2() {
-    drawTexture(textureIce1, vec2(100, 100), vec2(500, 200));
-}
-
 void Render() {
+    int imageIndex = 0;
+
     if (conditionForWood) {
-        NotifyVisualImageWood();
+        log("Condition for drawing texture met: Wood", LogLevel::Info, 16);
+        drawTexture(textureWood, imageIndex++);
     }
     if (conditionForIce1) {
-        NotifyVisualImageIce();
+        log("Condition for drawing texture met: Ice1", LogLevel::Info, 16);
+        drawTexture(textureIce1, imageIndex++);
     }
     if (conditionForIce2) {
-        NotifyVisualImageIce2();
+        log("Condition for drawing texture met: Ice2", LogLevel::Info, 16);
+        drawTexture(textureIce2, imageIndex++);
     }
 }
-
