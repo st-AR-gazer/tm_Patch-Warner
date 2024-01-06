@@ -89,7 +89,7 @@ void OnMapLoad() {
             conditionForWood = true;
         } else {
             log("The exebuild is less than 2023-11-15_11_56. Warning wood physics.", LogLevel::Warn, 91);
-            NotifyWarn("This maps exeVer: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
+            NotifyWarn("This map's exeBuild: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).");
         }
     }
     CountdownTime = 11000;
