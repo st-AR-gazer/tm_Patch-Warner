@@ -10,10 +10,15 @@ void NotifyWarnIce(const string &in msg) { // Ice Gen1
 void NotifyWarnIce2(const string &in msg) { // Ice Gen2
     UI::ShowNotification("Patch Warner", msg + "\n" + "\\$afe" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
+void NotifyWarnBumper(const string &in msg) { // Ice Gen2
+    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$654██████\\$fb0██████\\$654██████\\$654██████\\$b31██████\\$654██████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
+}
 
 void NotifyInfo(const string &in msg) {
     UI::ShowNotification("Patch Warner", msg, vec4(.3, 1, .1, .5), warningMessageLength);
 }
+
+
 
 enum LogLevel {
     Info,

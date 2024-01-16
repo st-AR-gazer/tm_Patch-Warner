@@ -93,7 +93,7 @@ void OnMapLoad() {
             conditionForBumper = true;
         } else {
             log("The exebuild is less than 2020-12-22_13_18. Warning bumper physics.", LogLevel::Warn, 75);
-            NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the the bumper update, the medal times may be affected.");
+            NotifyWarnBumper("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the the bumper update, the medal times may be affected.");
         }
     }
     if (exeBuild < "2023-11-15_11_56") {
