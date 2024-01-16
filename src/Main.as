@@ -1,9 +1,12 @@
 auto fidFile;
 
 bool isMapLoaded = false;
+
 bool conditionForIce1 = false;
 bool conditionForIce2 = false;
 bool conditionForWood = false;
+bool conditionForBumper = false;
+
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
@@ -30,6 +33,7 @@ void MapCheck() {
         conditionForIce1 = false;
         conditionForIce2 = false;
         conditionForWood = false;
+        conditionForBumper = false;
         hasPlayedOnThisMap = false;
         return;
     }
@@ -46,6 +50,7 @@ void MapCheck() {
         conditionForIce1 = false;
         conditionForIce2 = false;
         conditionForWood = false;
+        conditionForBumper = false;
         hasPlayedOnThisMap = false;
         return;
     }
@@ -83,8 +88,15 @@ void OnMapLoad() {
             log("The exebuild falls between 2023-04-28_17_34 and 2023-11-15_11_56. Warning ice physics-2.", LogLevel::Warn, 75);
             NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' falls BETWEEN the two ice updates, the medal times may be affected.");
         }
+    }    
+    if (exeBuild < "2020-12-22_13_18") {
+        if (doVisualImageInducator) {
+            conditionForBumper = true;
+        } else {
+            log("The exebuild is less than 2020-12-22_13_18. Warning bumper physics.", LogLevel::Warn, 75);
+            NotifyWarnIce2("This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the the bumper update, the medal times may be affected.");
+        }
     }
-    
     if (exeBuild < "2023-11-15_11_56") {
         if (doVisualImageInducator) {
             conditionForWood = true;
