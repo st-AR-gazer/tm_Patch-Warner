@@ -1,5 +1,5 @@
-[Info]
-Name = "Patch Warner"
-Author = "ar....."
-Version = "0.1.0"
+[meta]
+name = "Patch Warner"
+author = "ar....."
+version = "0.1.0"
 category = "Utility"
