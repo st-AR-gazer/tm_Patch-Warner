@@ -3,9 +3,9 @@ auto PreviousCountdownTime;
 
 auto CountdownTime;
 
-int absolute(int value) {
-    return value < 0 ? -value : value;
-}
+// int absolute(int value) {
+//     return value < 0 ? -value : value;
+// }
 
 void time(float dt) {
     if (10 >= CountdownTime) {
@@ -24,7 +24,7 @@ void time(float dt) {
         int elapsedTime = Time::get_Now() - absoluteStartTime;
         int expectedCountdown = 11000 - elapsedTime;
 
-        if (absolute(CountdownTime - expectedCountdown) > 10) {
+        if (Math::Abs(CountdownTime - expectedCountdown) > 10) {
             CountdownTime = expectedCountdown;
         }
     }

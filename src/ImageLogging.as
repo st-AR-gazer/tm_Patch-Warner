@@ -56,7 +56,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     } else { // end
         transparancy = CountdownTime / 3000.0f;
     }
-    print(CountdownTime);
+
     transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
 
 
