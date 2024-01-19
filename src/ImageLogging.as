@@ -14,11 +14,7 @@ void loadTextures() {
     @textureBumper = nvg::LoadTexture("src/img/bumper.png");
 }
 
-void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
-    for (int i = 0; i < count; i++) {
-        drawTexture(textures[i], i);
-    }
-}
+
 
 
 [Setting category="General" name="XOffset" description="XOffset of the visual display"]
@@ -90,6 +86,8 @@ void Render() {
 
     drawMultipleTextures(texturesToDraw, texturesToDraw.get_Length());
 }
+
+
 
 void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
     for (int i = 0; i < count; i++) {
