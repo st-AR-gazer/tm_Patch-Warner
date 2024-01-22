@@ -1,5 +1,6 @@
 int absoluteStartTime = -1;
 auto PreviousCountdownTime;
+auto PreviousTime;
 
 auto CountdownTime;
 
@@ -7,27 +8,12 @@ auto CountdownTime;
 //     return value < 0 ? -value : value;
 // }
 
-void time(float dt) {
-    if (10 >= CountdownTime) {
-        CountdownTime = 10;
+void time() {
+    uint CurrentTime = Time::get_Now();
+
+    if (CountdownTime > 0) {
+        CountdownTime -= CurrentTime - PreviousTime;
+        if (CountdownTime < 0) CountdownTime = 0;
     }
-    
-    if (CountdownTime == 11000 && absoluteStartTime == -1) {
-        absoluteStartTime = Time::get_Now();
-    }
-
-    CountdownTime -= int(dt);
-
-    if (CountdownTime <= 0) {
-        absoluteStartTime = -1;
-    } else {
-        int elapsedTime = Time::get_Now() - absoluteStartTime;
-        int expectedCountdown = 11000 - elapsedTime;
-
-        if (Math::Abs(CountdownTime - expectedCountdown) > 10) {
-            CountdownTime = expectedCountdown;
-        }
-    }
-
-    PreviousCountdownTime = CountdownTime;
+    PreviousTime = CurrentTime;
 }
