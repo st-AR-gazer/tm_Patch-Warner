@@ -5,6 +5,11 @@ class GbxHeaderChunkInfo
 }
 
 string GetExeBuildFromXML() {
+    
+    [Setting category="General" name="Use Offset" description="Use some offset instead of the map files XML to get the exe build."]
+    bool doOffsetXML = false;
+    if (doOffsetXML) return Dev::GetOffsetString(GetApp().RootMap, 0x78);
+
     string xmlString = "";
     string exeBuild = "";
 
