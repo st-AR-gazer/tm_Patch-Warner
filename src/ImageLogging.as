@@ -2,15 +2,17 @@
 bool doVisualImageInducator = false;
 
 
-nvg::Texture@ textureWood;
 nvg::Texture@ textureIce1;
 nvg::Texture@ textureIce2;
+nvg::Texture@ textureIce3;
+nvg::Texture@ textureWood;
 nvg::Texture@ textureBumper;
 
 void loadTextures() {
-    @textureWood   = nvg::LoadTexture("src/img/wood.png");
     @textureIce1   = nvg::LoadTexture("src/img/ice1.png");
     @textureIce2   = nvg::LoadTexture("src/img/ice2.png");
+    @textureIce3   = nvg::LoadTexture("src/img/ice3.png");
+    @textureWood   = nvg::LoadTexture("src/img/wood.png");
     @textureBumper = nvg::LoadTexture("src/img/bumper.png");
 }
 
@@ -79,6 +81,9 @@ void Render() {
     }
     if (conditionForIce2) {
         texturesToDraw.InsertLast(textureIce2);
+    }
+    if (conditionForIce3) {
+        texturesToDraw.InsertLast(textureIce3);
     }
     if (conditionForBumper) {
         texturesToDraw.InsertLast(textureBumper);
