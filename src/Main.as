@@ -38,6 +38,9 @@ void MapCheck() {
         hasPlayedOnThisMap = false;
         return;
     }
+
+    auto scene = cast<ISceneVis@>(app.GameScene);
+    if (scene is null) return;
     
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) return;
@@ -53,11 +56,6 @@ void MapCheck() {
         hasPlayedOnThisMap = false;
         return;
     }
-
-
-    auto scene = cast<ISceneVis@>(app.GameScene);
-    if (scene is null) return;
-
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 59);
@@ -108,10 +106,10 @@ void OnMapLoad() {
     string woodWarnMsg1   = "This map's exeBuild: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).";
     string bumperWarnMsg1 = "This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the bumper update, the medal times may be affected.";
 
-    CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", showIce1,    conditionForIce1,   iceLogMsg1   , iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", showIce2,    conditionForIce2,   iceLogMsg2   , iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34",                 "", showIce3,    conditionForIce3,   iceLogMsg3   , iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "2023-11-15_11_56",                 "", showWood1,   conditionForWood,   woodLogMsg1  , woodWarnMsg1,   false, false);
+    CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34",                 "", showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "2023-11-15_11_56",                 "", showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   false, false);
     CheckAndUpdateCondition(exeBuild, "2020-12-22_13_18",                 "", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, false, false);
 
     CountdownTime = 10000;
