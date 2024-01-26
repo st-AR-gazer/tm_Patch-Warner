@@ -10,7 +10,7 @@ void NotifyWarnIce2(const string &in msg) { // Ice Gen2
 void NotifyWarnIce3(const string &in msg) { // Ice Gen2
     UI::ShowNotification("Patch Warner", msg + "\n" + "\\$afe" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
-// colors are not fixed, they need to be ajusted for the new color scheme...
+// colors are fixed, they need to be ajusted for the new color scheme...
 
 void NotifyWarn(const string &in msg) { // Wood
     UI::ShowNotification("Patch Warner", msg + "\n" + "\\$b86" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
