@@ -27,8 +27,23 @@ void MapCheck() {
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
 
+    CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
+    if (fidFile is null) {
+        isMapLoaded = false;
+        conditionForIce1 = false;
+        conditionForIce2 = false;
+        conditionForIce3 = false;
+        conditionForWood = false;
+        conditionForBumper = false;
+        hasPlayedOnThisMap = false;
+        return;
+    }
+    
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
-    if (playground is null || playground.Arena.Players.Length == 0) {
+    if (playground is null || playground.Arena.Players.Length == 0) return;
+    
+    auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
+    if (script is null) { 
         isMapLoaded = false;
         conditionForIce1 = false;
         conditionForIce2 = false;
@@ -39,14 +54,10 @@ void MapCheck() {
         return;
     }
 
-    auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
-    if (script is null) return; 
 
     auto scene = cast<ISceneVis@>(app.GameScene);
     if (scene is null) return;
 
-    CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
-    if (fidFile is null) return;
 
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 59);
