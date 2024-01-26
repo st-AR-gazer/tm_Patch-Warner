@@ -56,7 +56,7 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
     if (showNotifyWarnWithIce) {
         NotifyWarn(notifyMessage);
     }
-    log(logMessage, LogLevel::Warn, 81);
+    log(logMessage, LogLevel::Warn, 59);
 }
 
 // float calcTransparancy(transparancy) {

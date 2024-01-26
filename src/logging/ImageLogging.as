@@ -57,9 +57,8 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
     transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
 
-
     if (CountdownTime == 0) return;
-    
+
     if (texture !is null) {
         nvg::Reset();
         nvg::BeginPath();
@@ -73,9 +72,6 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 void Render() {
     array<nvg::Texture@> texturesToDraw;
 
-    if (conditionForWood) {
-        texturesToDraw.InsertLast(textureWood);
-    }
     if (conditionForIce1) {
         texturesToDraw.InsertLast(textureIce1);
     }
@@ -85,11 +81,14 @@ void Render() {
     if (conditionForIce3) {
         texturesToDraw.InsertLast(textureIce3);
     }
+    if (conditionForWood) {
+        texturesToDraw.InsertLast(textureWood);
+    }
     if (conditionForBumper) {
         texturesToDraw.InsertLast(textureBumper);
     }
 
-    drawMultipleTextures(texturesToDraw, texturesToDraw.get_Length());
+    drawMultipleTextures(texturesToDraw, texturesToDraw.Length);
 }
 
 
