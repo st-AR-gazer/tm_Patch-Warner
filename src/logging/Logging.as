@@ -5,7 +5,7 @@ void NotifyWarnIce(const string &in msg) { // Ice Gen1
     UI::ShowNotification("Patch Warner", msg + "\n" + "\\$3cf" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
 void NotifyWarnIce2(const string &in msg) { // Ice Gen2
-    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$afe" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
+    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$bdf" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
 void NotifyWarnIce3(const string &in msg) { // Ice Gen2
     UI::ShowNotification("Patch Warner", msg + "\n" + "\\$afe" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
