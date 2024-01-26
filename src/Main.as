@@ -24,6 +24,8 @@ void Main() {
 
 
 void MapCheck() {
+    if (CountdownTime <= 0) return;
+
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
 
