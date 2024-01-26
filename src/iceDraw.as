@@ -31,14 +31,8 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
     // Textcolour/location
 
     float transparancy;
-    if (CountdownTime > 8000) { // start 
-        transparancy = 1.0f - ((CountdownTime - 8000) / 3000.0f);
-    } else if (CountdownTime > 3000) { // middle
-        transparancy = 1.0f;
-    } else { // end
-        transparancy = CountdownTime / 3000.0f;
-    }
-    transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
+
+    transparancy = calcTransparancy(transparancy);
 
     textColor.w = transparancy * textColor.w;
 
@@ -56,4 +50,17 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
         NotifyWarn(notifyMessage);
     }
     log(logMessage, LogLevel::Warn, 81);
+}
+
+float calcTransparancy(transparancy) {
+    if (CountdownTime > 8000) { // start 
+        transparancy = 1.0f - ((CountdownTime - 8000) / 3000.0f);
+    } else if (CountdownTime > 3000) { // middle
+        transparancy = 1.0f;
+    } else { // end
+        transparancy = CountdownTime / 3000.0f;
+    }
+    transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
+
+    return transparancy;
 }
