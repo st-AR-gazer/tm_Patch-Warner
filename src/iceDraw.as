@@ -29,7 +29,7 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
 
     shouldRenderGenIce = true;
 
-    log(logMessage, LogLevel::Warn, 59);
+    log(logMessage, LogLevel::Warn, 32);
 }
 
 bool shouldRenderGenIce = false;

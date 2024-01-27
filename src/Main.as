@@ -11,7 +11,7 @@ bool conditionForBumper = false;
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
-    // log("" + CountdownTime, LogLevel::Info, 13);
+    // log("" + CountdownTime, LogLevel::Info, 14);
     time();
     renderGenIce();
 
@@ -64,10 +64,10 @@ void MapCheck() {
     }
     
     if (!isMapLoaded) {
-        log("Map load check started...", LogLevel::Info, 62);
+        log("Map load check started...", LogLevel::Info, 67);
         OnMapLoad();
         isMapLoaded = true;
-        log("Map load check completed.", LogLevel::Info, 65);
+        log("Map load check completed.", LogLevel::Info, 70);
     }
 }
 
@@ -100,7 +100,7 @@ void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate
             if (currentWarn == "Wood")   { NotifyWarn(notifyMessage); } 
             if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
 
-            log(logMessage, LogLevel::Warn, 97);
+            log(logMessage, LogLevel::Warn, 103);
             return;
             
         }
@@ -112,7 +112,7 @@ void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate
 
 void OnMapLoad() {
     string exeBuild = GetExeBuildFromXML();
-    log("Exe build: " + exeBuild, LogLevel::Info, 108);
+    log("Exe build: " + exeBuild, LogLevel::Info, 115);
 
     CountdownTime = 10000;
 
@@ -134,7 +134,7 @@ void OnMapLoad() {
     CheckAndUpdateCondition(exeBuild, "",                 "2023-11-15_11_56", "Wood",   showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "",                 "2020-12-22_13_18", "Bumper", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, showIceText, showNotifyWarnWithIce);
 
-    log(conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 128);
+    log(conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 137);
 
-    log("OnMapLoad function finished.", LogLevel::Info, 131);   
+    log("OnMapLoad function finished.", LogLevel::Info, 139);   
 }
