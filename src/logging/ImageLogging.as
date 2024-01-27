@@ -17,8 +17,6 @@ void loadTextures() {
 }
 
 
-
-
 [Setting category="General" name="XOffset" description="XOffset of the visual display"]
 float xOffsetDrawing = 0.1f;
 
@@ -27,8 +25,6 @@ float custYOffest = 0.0f;
 
 [Setting category="General" name="Image Size" description="Size of the visual image"]
 float custImageSize = 0.1f;
-
-
 
 
 void drawTexture(nvg::Texture@ texture, int index = 0) {
@@ -91,8 +87,6 @@ void Render() {
 
     drawMultipleTextures(texturesToDraw, texturesToDraw.Length);
 }
-
-
 
 void drawMultipleTextures(array<nvg::Texture@> textures, int count) {
     for (int i = 0; i < count; i++) {

@@ -1,17 +1,6 @@
 void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce, 
                 const string &in logMessage, const string &in notifyMessage) {
 
-
-    // Location
-    float screenWidth = Draw::GetWidth();
-    float screenHeight = Draw::GetHeight();
-
-    float xOffset = screenWidth * xOffsetDrawing;
-    float yOffset = screenHeight / screenHeight - 1;
-
-    yOffset += custYOffest * screenHeight;
-    // Location
-
     // Textcolour/location
     vec4 textColor;
     int generation = 0;
@@ -28,9 +17,7 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
         generation = 3;
         textColor = vec4(186, 253, 252, 255); // Transparancy gets overwriten later
     }
-
     // Textcolour/location
-
 
     textColorForGenIce = textColor;
     generationForGenIce = generation;
@@ -42,23 +29,8 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
 
     shouldRenderGenIce = true;
 
-    // Log the message
     log(logMessage, LogLevel::Warn, 59);
 }
-
-// float calcTransparency(float totalDuration, float fadeDuration) {
-//     float transparency;
-
-//     if (CountdownTime > totalDuration - fadeDuration) {
-//         transparency = 1.0f - ((totalDuration - CountdownTime) / fadeDuration);
-//     } else if (CountdownTime > fadeDuration) {
-//         transparency = 1.0f;
-//     } else {
-//         transparency = CountdownTime / fadeDuration;
-//     }
-
-//     return Math::Clamp(transparency, 0.0f, 1.0f);
-// }
 
 bool shouldRenderGenIce = false;
 vec4 textColorForGenIce;
@@ -72,6 +44,7 @@ void renderGenIce() {
 
     // float transparency = calcTransparency(totalDuration, fadeDuration);
     float transparency = 1.0f;
+    if (CountdownTime < 2000) { transparency = 0.0f; }
 
     textColorForGenIce.w = transparency * textColorForGenIce.w;
 

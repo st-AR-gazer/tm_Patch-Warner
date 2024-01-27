@@ -28,7 +28,6 @@ void Main() {
     }
 }
 
-
 void MapCheck() {
 
     CTrackMania@ app = cast<CTrackMania>(GetApp());
