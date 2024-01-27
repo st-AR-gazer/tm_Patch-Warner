@@ -1,6 +1,7 @@
 void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce, 
                 const string &in logMessage, const string &in notifyMessage) {
 
+
     // Location
     float screenWidth = Draw::GetWidth();
     float screenHeight = Draw::GetHeight();
@@ -30,44 +31,53 @@ void drawGenIce(const string &in exeBuild, bool showNotifyWarnWithIce,
 
     // Textcolour/location
 
-    float transparancy;
 
-    if (CountdownTime > 8000) { // start 
-        transparancy = 1.0f - ((CountdownTime - 8000) / 3000.0f);
-    } else if (CountdownTime > 3000) { // middle
-        transparancy = 1.0f;
-    } else { // end
-        transparancy = CountdownTime / 3000.0f;
+    textColorForGenIce = textColor;
+    generationForGenIce = generation;
+
+    if (!showIceText) {
+        shouldRenderGenIce = false;
+        return;
     }
-    transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
 
-    textColor.w = transparancy * textColor.w;
+    shouldRenderGenIce = true;
 
-    if (CountdownTime == 0) return;
-
-    // Drawing the text with transparency
-    nvg::BeginPath();
-    nvg::FontSize(18.0);
-    nvg::FillColor(textColor);
-    nvg::TextAlign(nvg::Align::Left | nvg::Align::Top);
-    nvg::Text(vec2(xOffset, yOffset), "Gen " + generation);
-    nvg::ClosePath();
-
-    if (showNotifyWarnWithIce) {
-        NotifyWarn(notifyMessage);
-    }
+    // Log the message
     log(logMessage, LogLevel::Warn, 59);
 }
 
-// float calcTransparancy(transparancy) {
-//     if (CountdownTime > 8000) { // start 
-//         transparancy = 1.0f - ((CountdownTime - 8000) / 3000.0f);
-//     } else if (CountdownTime > 3000) { // middle
-//         transparancy = 1.0f;
-//     } else { // end
-//         transparancy = CountdownTime / 3000.0f;
+// float calcTransparency(float totalDuration, float fadeDuration) {
+//     float transparency;
+
+//     if (CountdownTime > totalDuration - fadeDuration) {
+//         transparency = 1.0f - ((totalDuration - CountdownTime) / fadeDuration);
+//     } else if (CountdownTime > fadeDuration) {
+//         transparency = 1.0f;
+//     } else {
+//         transparency = CountdownTime / fadeDuration;
 //     }
-//     transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
-// 
-//     return transparancy;
+
+//     return Math::Clamp(transparency, 0.0f, 1.0f);
 // }
+
+bool shouldRenderGenIce = false;
+vec4 textColorForGenIce;
+int generationForGenIce;
+
+void renderGenIce() {
+    if (!shouldRenderGenIce || CountdownTime <= 0) return;
+
+    // float totalDuration = 8000;
+    // float fadeDuration = 1;
+
+    // float transparency = calcTransparency(totalDuration, fadeDuration);
+    float transparency = 1.0f;
+
+    textColorForGenIce.w = transparency * textColorForGenIce.w;
+
+    nvg::BeginPath();
+    nvg::FontSize(120.0);
+    nvg::FillColor(textColorForGenIce);
+    nvg::Text(vec2(Draw::GetWidth() / 4.7, 100), "Gen " + generationForGenIce);
+    nvg::ClosePath();
+}

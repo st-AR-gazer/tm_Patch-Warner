@@ -58,6 +58,7 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
     transparancy = Math::Clamp(transparancy, 0.0f, 1.0f);
 
     if (CountdownTime == 0) return;
+    if (!doVisualImageInducator) return;
 
     if (texture !is null) {
         nvg::Reset();

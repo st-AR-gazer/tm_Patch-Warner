@@ -11,7 +11,13 @@ bool conditionForBumper = false;
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
+    // log("" + CountdownTime, LogLevel::Info, 13);
     time();
+    renderGenIce();
+
+    if (showIceText) {
+        doVisualImageInducator = false;
+    }
 }
 
 void Main() {
@@ -77,12 +83,12 @@ void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate
     if ((isAfterOrEqualMinDate && isBeforeMaxDate) || (exeBuild < minDate && maxDate == "") || (exeBuild < maxDate && minDate == "")) {
         if (showFeatureFlag) {
             if (doVisualImageInducator && !showIceText) {
-                
                 specificConditionVariable  = true;
                 return;
             } 
             if (showIceText) {
                 drawGenIce(exeBuild, showNotifyWarnWithIce, logMessage, notifyMessage);
+                if (!showNotifyWarnWithIce) return;
                 if (currentWarn == "Wood")   { NotifyWarn(notifyMessage); } 
                 if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
                 return;
@@ -126,8 +132,8 @@ void OnMapLoad() {
     CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", "Ice1",   showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", "Ice2",   showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34", "9999-99-99_99_99", "Ice3",   showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "2023-11-15_11_56",                 "", "Wood",   showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   false, false);
-    CheckAndUpdateCondition(exeBuild, "",                 "2020-12-22_13_18", "Bumper", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, false, false);
+    CheckAndUpdateCondition(exeBuild, "",                 "2023-11-15_11_56", "Wood",   showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "",                 "2020-12-22_13_18", "Bumper", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, showIceText, showNotifyWarnWithIce);
 
     log(conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 128);
 
