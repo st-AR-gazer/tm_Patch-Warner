@@ -51,6 +51,6 @@ void renderGenIce() {
     nvg::BeginPath();
     nvg::FontSize(120.0);
     nvg::FillColor(textColorForGenIce);
-    nvg::Text(vec2(Draw::GetWidth() / 4.7, 100), "Gen " + generationForGenIce);
+    nvg::Text(vec2(showIceTextOffestY, showIceTextOffestX), "Gen " + generationForGenIce);
     nvg::ClosePath();
 }

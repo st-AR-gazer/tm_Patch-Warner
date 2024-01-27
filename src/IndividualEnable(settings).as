@@ -21,5 +21,17 @@ bool showBumper1 = true;
 [Setting category="Enable Individual Warnings" name="Show Ice Generation" description="Shows the generation of ice instead the normal ice warning"]
 bool showIceText = false;
 
+[Setting category="Enable Individual Warnings" name="Show Ice Generation (text size)" description="Shows the generation of ice instead the normal ice warning"]
+bool showIceTextSize = false;
+
+[Setting category="Enable Individual Warnings" name="Show Ice Generation (offset Y)" description="Shows the generation of ice instead the normal ice warning"]
+int showIceTextOffestY = Draw::GetWidth() / 4.7;
+
+[Setting category="Enable Individual Warnings" name="Show Ice Generation (offset X)" description="Shows the generation of ice instead the normal ice warning"]
+int showIceTextOffestX = 100;
+
+
+
+
 [Setting category="Enable Individual Warnings" name="Show other notifications with ice generation" description="A setting to show other notifications with the ice generation warning"]
 bool showNotifyWarnWithIce = true;
