@@ -49,7 +49,7 @@ void renderGenIce() {
     textColorForGenIce.w = transparency * textColorForGenIce.w;
 
     nvg::BeginPath();
-    nvg::FontSize(120.0);
+    nvg::FontSize(showIceTextSize);
     nvg::FillColor(textColorForGenIce);
     nvg::Text(vec2(showIceTextOffestY, showIceTextOffestX), "Gen " + generationForGenIce);
     nvg::ClosePath();

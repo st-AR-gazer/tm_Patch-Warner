@@ -22,7 +22,7 @@ bool showBumper1 = true;
 bool showIceText = false;
 
 [Setting category="Enable Individual Warnings" name="Show Ice Generation (text size)" description="Shows the generation of ice instead the normal ice warning"]
-bool showIceTextSize = false;
+float showIceTextSize = 120.0f;
 
 [Setting category="Enable Individual Warnings" name="Show Ice Generation (offset Y)" description="Shows the generation of ice instead the normal ice warning"]
 int showIceTextOffestY = Draw::GetWidth() / 4.7;
