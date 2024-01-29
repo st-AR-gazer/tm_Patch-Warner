@@ -7,6 +7,7 @@ nvg::Texture@ textureIce2;
 nvg::Texture@ textureIce3;
 nvg::Texture@ textureWood;
 nvg::Texture@ textureBumper;
+nvg::Texture@ textureWater;
 
 void loadTextures() {
     @textureIce1   = nvg::LoadTexture("src/img/ice1.png");
@@ -14,6 +15,7 @@ void loadTextures() {
     @textureIce3   = nvg::LoadTexture("src/img/ice3.png");
     @textureWood   = nvg::LoadTexture("src/img/wood.png");
     @textureBumper = nvg::LoadTexture("src/img/bumper.png");
+    @textureWater = nvg::LoadTexture("src/img/bumper.png");
 }
 
 
@@ -83,6 +85,9 @@ void Render() {
     }
     if (conditionForBumper) {
         texturesToDraw.InsertLast(textureBumper);
+    }
+    if (conditionForWater1) {
+        texturesToDraw.InsertLast(textureWater);
     }
 
     drawMultipleTextures(texturesToDraw, texturesToDraw.Length);

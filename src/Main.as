@@ -148,7 +148,7 @@ void OnMapLoad() {
     CheckAndUpdateCondition("Bumper", exeBuild, "",                 "2020-12-22_13_18", false, showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, false, false);
     CheckAndUpdateCondition("Ice",    exeBuild, "",                 "2022-05-19_15_03", false, showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition("Ice2",   exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", true,  showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition("Ice3",   exeBuild, "2023-04-28_17_34",                 "", false, showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition("Ice3",   exeBuild, "2023-04-28_17_34",             "9999", false, showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
 
     log(conditionForWater1 + " water, " + conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 137);
 
@@ -167,3 +167,5 @@ void OnMapLoad() {
 // e.g add: `if (currentWarn == "[physics]")  { NotifyWarn[physics](notifyMessage); } `
 
 // 6. Add new condition to the log() function
+
+// 7. Add texture to ImageLogging.as
