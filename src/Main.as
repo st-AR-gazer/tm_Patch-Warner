@@ -37,6 +37,7 @@ void MapCheck() {
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) {
         isMapLoaded = false;
+        conditionForWater1 = false;
         conditionForIce1 = false;
         conditionForIce2 = false;
         conditionForIce3 = false;
@@ -73,10 +74,10 @@ void MapCheck() {
     }
 }
 
-void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate, const bool &in shouldIncludeMaxDate, const string &in maxDate, 
-                             const string &in currentWarn, bool showFeatureFlag, bool &out specificConditionVariable, 
-                             const string &in logMessage, const string &in notifyMessage, bool showIceText, 
-                             bool showNotifyWarnWithIce) {
+void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate, const bool &in shouldIncludeMaxDate, 
+                             const string &in maxDate, const string &in currentWarn, bool showFeatureFlag, 
+                             bool &out specificConditionVariable, const string &in logMessage, const string &in notifyMessage, 
+                             bool showIceText, bool showNotifyWarnWithIce) {
     
     bool isBeforeOrEqualToMaxDate = shouldIncludeMaxDate ? (maxDate == "" || exeBuild <= maxDate) : (maxDate == "" || exeBuild < maxDate);
     bool isAfterOrEqualMinDate = exeBuild >= minDate;
@@ -91,6 +92,7 @@ void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate
                 drawGenIce(exeBuild, showNotifyWarnWithIce, logMessage, notifyMessage);
                 if (!showNotifyWarnWithIce) return;
                 if (currentWarn == "Wood")   { NotifyWarn(notifyMessage); } 
+                if (currentWarn == "Water")  { NotifyWarnWater(notifyMessage); } 
                 if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
                 return;
             }
@@ -100,6 +102,7 @@ void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate
                 if (currentWarn == "Ice3")   { NotifyWarnIce3(notifyMessage); } 
             }
             if (currentWarn == "Wood")   { NotifyWarn(notifyMessage); } 
+            if (currentWarn == "Water")  { NotifyWarnWater(notifyMessage); } 
             if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
 
             log(logMessage, LogLevel::Warn, 103);
