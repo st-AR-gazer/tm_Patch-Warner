@@ -2,7 +2,7 @@
 int warningMessageLength = 6000;
 
 void NotifyWarnWater(const string &in msg) { // Water
-    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$3cf" + "████████████████████████████████████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
+    UI::ShowNotification("Patch Warner", msg + "\n" + "\\$ade██████\\$7fd██████\\$4ed██████\\$088██████\\$008██████\\$0ff██████" + "\\$z", vec4(1, .5, .1, .5), warningMessageLength);
 }
 
 void NotifyWarnIce(const string &in msg) { // Ice Gen1

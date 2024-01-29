@@ -30,7 +30,7 @@ bool showIceText = false;
 float showIceTextSize = 120.0f;
 
 [Setting category="Enable Individual Warnings" name="Show Ice Generation (offset Y)" description="Shows the generation of ice instead the normal ice warning"]
-int showIceTextOffestY = Draw::GetWidth() / 4.7;
+float showIceTextOffestY = Draw::GetWidth() / 4.7;
 
 [Setting category="Enable Individual Warnings" name="Show Ice Generation (offset X)" description="Shows the generation of ice instead the normal ice warning"]
 int showIceTextOffestX = 100;
