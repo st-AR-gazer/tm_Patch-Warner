@@ -146,3 +146,16 @@ void OnMapLoad() {
 
     log("OnMapLoad function finished.", LogLevel::Info, 139);   
 }
+
+// Adding a new physics update warning pipeline:
+// 1. Add new string with the log message
+// 2. Add new string with the notify message
+// 3. Add new setting with check for if user wants to see the warn
+
+// 4. Add new bool variable for the condition to CSystemFidFile@ and CTrackMania@, e.g conditionFor[newWarn] = false;, 
+// also add this to the top of main so it can be referenced globally
+
+// 5. Add new condition to the CheckAndUpdateCondition function
+// e.g add: `if (currentWarn == "[physics]")  { NotifyWarn[physics](notifyMessage); } `
+
+// 6. Add new condition to the log() function
