@@ -1,6 +1,3 @@
-int absoluteStartTime = -1;
-auto PreviousCountdownTime;
-
 auto PreviousTime;
 auto CountdownTime;
 

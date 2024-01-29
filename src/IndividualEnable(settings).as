@@ -1,3 +1,8 @@
+// Water patch warnings
+
+[Setting category="Enable Individual Warnings" name="Water 1 (The first water update)" description="Enable or dissable the first water warning"]
+bool showWater1 = true;
+
 // Ice patch warnings
 [Setting category="Enable Individual Warnings" name="Ice 1 (The first Ice update)" description="Enable or dissable the first ice warning"]
 bool showIce1 = true;
