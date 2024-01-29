@@ -65,25 +65,6 @@ void MapCheck() {
         return;
     }
     
-<<<<<<< HEAD
-    auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
-    if (playground is null || playground.Arena.Players.Length == 0) return;
-    
-    auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
-    if (script is null) { 
-        isMapLoaded = false;
-        conditionForWater1 = false;
-        conditionForIce1 = false;
-        conditionForIce2 = false;
-        conditionForIce3 = false;
-        conditionForWood = false;
-        conditionForBumper = false;
-        hasPlayedOnThisMap = false;
-        return;
-    }
-
-=======
->>>>>>> 6396b28868f4319a5933e82df457b64c2271e11b
     if (!isMapLoaded) {
         log("Map load check started...", LogLevel::Info, 67);
         OnMapLoad();
@@ -151,21 +132,12 @@ void OnMapLoad() {
     string woodWarnMsg1   = "This map's exeBuild: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).";
     string bumperWarnMsg1 = "This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the bumper update, the medal times may be affected.";
 
-<<<<<<< HEAD
-
     CheckAndUpdateCondition(exeBuild, "",                 "2022-09-30_10_13", showWater1,  conditionForWater1, waterLogMsg1,  waterWarnMsg1,  false, false);
     CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34",                 "", showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "2023-11-15_11_56",                 "", showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   false, false);
     CheckAndUpdateCondition(exeBuild, "2020-12-22_13_18",                 "", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, false, false);
-=======
-    CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", "Ice1",   showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", "Ice2",   showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34", "9999-99-99_99_99", "Ice3",   showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "",                 "2023-11-15_11_56", "Wood",   showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   showIceText, showNotifyWarnWithIce);
-    CheckAndUpdateCondition(exeBuild, "",                 "2020-12-22_13_18", "Bumper", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, showIceText, showNotifyWarnWithIce);
->>>>>>> 6396b28868f4319a5933e82df457b64c2271e11b
 
     log(conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 137);
 
