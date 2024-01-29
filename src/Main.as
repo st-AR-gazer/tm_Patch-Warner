@@ -12,7 +12,13 @@ bool conditionForBumper = false;
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
+    // log("" + CountdownTime, LogLevel::Info, 14);
     time();
+    renderGenIce();
+
+    if (showIceText) {
+        doVisualImageInducator = false;
+    }
 }
 
 void Main() {
@@ -23,12 +29,28 @@ void Main() {
     }
 }
 
-
 void MapCheck() {
-    if (CountdownTime <= 0) return;
 
     CTrackMania@ app = cast<CTrackMania>(GetApp());
     if (app is null) return;
+
+    auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
+    if (playground is null || playground.Arena.Players.Length == 0) {
+        isMapLoaded = false;
+        conditionForIce1 = false;
+        conditionForIce2 = false;
+        conditionForIce3 = false;
+        conditionForWood = false;
+        conditionForBumper = false;
+        hasPlayedOnThisMap = false;
+        return;
+    }
+    
+    auto script = cast<CSmScriptPlayer>(playground.Arena.Players[0].ScriptAPI);
+    if (script is null) return;
+
+    ISceneVis@ scene = cast<ISceneVis@>(app.GameScene);
+    if (scene is null) return;
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(app.RootMap.MapInfo.Fid);
     if (fidFile is null) {
@@ -42,10 +64,8 @@ void MapCheck() {
         hasPlayedOnThisMap = false;
         return;
     }
-
-    auto scene = cast<ISceneVis@>(app.GameScene);
-    if (scene is null) return;
     
+<<<<<<< HEAD
     auto playground = cast<CSmArenaClient>(app.CurrentPlayground);
     if (playground is null || playground.Arena.Players.Length == 0) return;
     
@@ -62,42 +82,60 @@ void MapCheck() {
         return;
     }
 
+=======
+>>>>>>> 6396b28868f4319a5933e82df457b64c2271e11b
     if (!isMapLoaded) {
-        log("Map load check started...", LogLevel::Info, 59);
+        log("Map load check started...", LogLevel::Info, 67);
         OnMapLoad();
         isMapLoaded = true;
-        log("Map load check completed.", LogLevel::Info, 62);
+        log("Map load check completed.", LogLevel::Info, 70);
     }
 }
 
 void CheckAndUpdateCondition(const string &in exeBuild, const string &in minDate, const string &in maxDate, 
-                             bool showFeatureFlag, bool imageDisplayConditionVariable, const string &in logMessage, 
-                             const string &in notifyMessage, bool showIceText, bool showNotifyWarnWithIce) {
-                                
-    bool isBeforeMaxDate = maxDate.Length == 0 || exeBuild < maxDate;
+                             const string &in currentWarn, bool showFeatureFlag, bool &out specificConditionVariable, 
+                             const string &in logMessage, const string &in notifyMessage, bool showIceText, 
+                             bool showNotifyWarnWithIce) {
+    
+    bool isBeforeMaxDate = maxDate == "" || exeBuild < maxDate;
     bool isAfterOrEqualMinDate = exeBuild >= minDate;
 
-    if ((isBeforeMaxDate && isAfterOrEqualMinDate) || (maxDate.Length == 0 && exeBuild < minDate)) {
-        if (!showFeatureFlag) {
-            if (doVisualImageInducator) {
-                if (showIceText) log(logMessage, LogLevel::Warn, 75);
-                if (showIceText) return;
-
-                imageDisplayConditionVariable = true;
-            }
+    if ((isAfterOrEqualMinDate && isBeforeMaxDate) || (exeBuild < minDate && maxDate == "") || (exeBuild < maxDate && minDate == "")) {
+        if (showFeatureFlag) {
+            if (doVisualImageInducator && !showIceText) {
+                specificConditionVariable  = true;
+                return;
+            } 
             if (showIceText) {
                 drawGenIce(exeBuild, showNotifyWarnWithIce, logMessage, notifyMessage);
+                if (!showNotifyWarnWithIce) return;
+                if (currentWarn == "Wood")   { NotifyWarn(notifyMessage); } 
+                if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
                 return;
             }
-            log(logMessage, LogLevel::Warn, 75);
-            NotifyWarn(notifyMessage);
+            if (!showIceText) {
+                if (currentWarn == "Ice1")   { NotifyWarnIce(notifyMessage); } 
+                if (currentWarn == "Ice2")   { NotifyWarnIce2(notifyMessage); }
+                if (currentWarn == "Ice3")   { NotifyWarnIce3(notifyMessage); } 
+            }
+            if (currentWarn == "Wood")   { NotifyWarn(notifyMessage); } 
+            if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
+
+            log(logMessage, LogLevel::Warn, 103);
+            return;
+            
         }
     }
+
+    specificConditionVariable = false;
 }
+
 
 void OnMapLoad() {
     string exeBuild = GetExeBuildFromXML();
-    log("Exe build: " + exeBuild, LogLevel::Info, 68);
+    log("Exe build: " + exeBuild, LogLevel::Info, 115);
+
+    CountdownTime = 10000;
 
     string waterLogMsg1   = "The exebuild is less than or equal to 2022-09-30_10_13. Warning water physics-1.";
     string iceLogMsg1     = "The exebuild is less than 2022-05-19_15_03. Warning ice physics-1.";
@@ -113,6 +151,7 @@ void OnMapLoad() {
     string woodWarnMsg1   = "This map's exeBuild: '" + exeBuild + "' indicates that this map was uploaded BEFORE the wood update, all wood on this map will behave like tarmac (road).";
     string bumperWarnMsg1 = "This map's exeBuild: '" + exeBuild + "' indicates that it was uploaded BEFORE the bumper update, the medal times may be affected.";
 
+<<<<<<< HEAD
 
     CheckAndUpdateCondition(exeBuild, "",                 "2022-09-30_10_13", showWater1,  conditionForWater1, waterLogMsg1,  waterWarnMsg1,  false, false);
     CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
@@ -120,8 +159,15 @@ void OnMapLoad() {
     CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34",                 "", showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition(exeBuild, "2023-11-15_11_56",                 "", showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   false, false);
     CheckAndUpdateCondition(exeBuild, "2020-12-22_13_18",                 "", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, false, false);
+=======
+    CheckAndUpdateCondition(exeBuild, "",                 "2022-05-19_15_03", "Ice1",   showIce1,    conditionForIce1,   iceLogMsg1,    iceWarnMsg1,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", "Ice2",   showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "2023-04-28_17_34", "9999-99-99_99_99", "Ice3",   showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "",                 "2023-11-15_11_56", "Wood",   showWood1,   conditionForWood,   woodLogMsg1,   woodWarnMsg1,   showIceText, showNotifyWarnWithIce);
+    CheckAndUpdateCondition(exeBuild, "",                 "2020-12-22_13_18", "Bumper", showBumper1, conditionForBumper, bumperLogMsg1, bumperWarnMsg1, showIceText, showNotifyWarnWithIce);
+>>>>>>> 6396b28868f4319a5933e82df457b64c2271e11b
 
-    CountdownTime = 10000;
+    log(conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 137);
 
-    log("OnMapLoad function finished.", LogLevel::Info, 105);   
+    log("OnMapLoad function finished.", LogLevel::Info, 139);   
 }

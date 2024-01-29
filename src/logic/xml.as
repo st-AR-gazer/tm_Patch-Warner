@@ -13,13 +13,13 @@ string GetExeBuildFromXML() {
     string xmlString = "";
     string exeBuild = "";
 
-    log("GetExeBuildFromXML function started.", LogLevel::Info, 11);
+    log("GetExeBuildFromXML function started.", LogLevel::Info, 16);
 
     CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetApp().RootMap.MapInfo.Fid);
 
     if (fidFile !is null) {
         try {
-            log("Opening map file.", LogLevel::Info, 17);
+            log("Opening map file.", LogLevel::Info, 22);
 
             IO::File mapFile(fidFile.FullFileName);
             mapFile.Open(IO::FileMode::Read);
@@ -27,7 +27,7 @@ string GetExeBuildFromXML() {
             mapFile.SetPos(17);
             int headerChunkCount = mapFile.Read(4).ReadInt32();
             
-            log("Header chunk count: " + headerChunkCount, LogLevel::Info, 25);
+            log("Header chunk count: " + headerChunkCount, LogLevel::Info, 30);
 
             GbxHeaderChunkInfo[] chunks = {};
             for (int i = 0; i < headerChunkCount; i++) {
@@ -36,7 +36,7 @@ string GetExeBuildFromXML() {
                 newChunk.ChunkSize = mapFile.Read(4).ReadInt32() & 0x7FFFFFFF;
                 chunks.InsertLast(newChunk);
                 
-                log("Read chunk " + i + " with id " + newChunk.ChunkId + " and size " + newChunk.ChunkSize, LogLevel::Info, 34);
+                log("Read chunk " + i + " with id " + newChunk.ChunkId + " and size " + newChunk.ChunkSize, LogLevel::Info, 39);
             }
 
             for (uint i = 0; i < chunks.Length; i++) {
@@ -47,7 +47,7 @@ string GetExeBuildFromXML() {
                     break;
                 }
 
-                log("Read chunk " + i + " of size " + chunks[i].ChunkSize, LogLevel::Info, 45);
+                log("Read chunk " + i + " of size " + chunks[i].ChunkSize, LogLevel::Info, 50);
             }
 
             mapFile.Close();
@@ -62,21 +62,21 @@ string GetExeBuildFromXML() {
                     if (potentialExeBuild != "") {
                         exeBuild = potentialExeBuild;
                     } else {
-                        log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn, 60);
+                        log("Exe build not found in XML. Assuming a new map.", LogLevel::Warn, 65);
                         return "9999-99-99_99_99";
                     }
                 } else {
-                    log("headerNode is invalid in GetExeBuildFromXML.", LogLevel::Warn, 64);
+                    log("headerNode is invalid in GetExeBuildFromXML.", LogLevel::Warn, 69);
                 }
             }
-            log("GetExeBuildFromXML function finished.", LogLevel::Info, 67);
+            log("GetExeBuildFromXML function finished.", LogLevel::Info, 72);
         }
         catch {
-            log("Error reading map file in GetExeBuildFromXML.", LogLevel::Error, 70);
+            log("Error reading map file in GetExeBuildFromXML.", LogLevel::Error, 75);
         }
     }
     else {
-        log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn, 74);
+        log("fidFile is null in GetExeBuildFromXML.", LogLevel::Warn, 79);
     }
     return exeBuild;
 }
