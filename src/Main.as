@@ -12,7 +12,7 @@ bool conditionForBumper = false;
 bool hasPlayedOnThisMap = false;
 
 void Update(float dt) {
-    // log("" + CountdownTime, LogLevel::Info, 14);
+    // log("" + CountdownTime, LogLevel::Info, 15);
     time();
     renderGenIce();
 
@@ -67,10 +67,10 @@ void MapCheck() {
     }
     
     if (!isMapLoaded) {
-        log("Map load check started...", LogLevel::Info, 67);
+        log("Map load check started...", LogLevel::Info, 70);
         OnMapLoad();
         isMapLoaded = true;
-        log("Map load check completed.", LogLevel::Info, 70);
+        log("Map load check completed.", LogLevel::Info, 73);
     }
 }
 
@@ -112,7 +112,7 @@ void CheckAndUpdateCondition(const string &in currentWarn,
             if (currentWarn == "Water")  { NotifyWarnWater(notifyMessage); } 
             if (currentWarn == "Bumper") { NotifyWarnBumper(notifyMessage); }
 
-            log(logMessage, LogLevel::Warn, 103);
+            log(logMessage, LogLevel::Warn, 115);
             return;
             
         }
@@ -124,7 +124,7 @@ void CheckAndUpdateCondition(const string &in currentWarn,
 
 void OnMapLoad() {
     string exeBuild = GetExeBuildFromXML();
-    log("Exe build: " + exeBuild, LogLevel::Info, 115);
+    log("Exe build: " + exeBuild, LogLevel::Info, 127);
 
     CountdownTime = 10000;
 
@@ -150,9 +150,9 @@ void OnMapLoad() {
     CheckAndUpdateCondition("Ice2",   exeBuild, "2022-05-19_15_03", "2023-04-28_17_34", true,  showIce2,    conditionForIce2,   iceLogMsg2,    iceWarnMsg2,    showIceText, showNotifyWarnWithIce);
     CheckAndUpdateCondition("Ice3",   exeBuild, "2023-04-28_17_34",             "9999", false, showIce3,    conditionForIce3,   iceLogMsg3,    iceWarnMsg3,    showIceText, showNotifyWarnWithIce);
 
-    log(conditionForWater1 + " water, " + conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 137);
+    log(conditionForWater1 + " water, " + conditionForBumper + " bumper, " + conditionForWood + " wood, " + conditionForIce1 + " ice1, " + conditionForIce2 + " ice2, " + conditionForIce3 + " ice3", LogLevel::Info, 153);
 
-    log("OnMapLoad function finished.", LogLevel::Info, 139);   
+    log("OnMapLoad function finished.", LogLevel::Info, 155);   
 }
 
 // Adding a new physics update warning pipeline:
