@@ -15,7 +15,7 @@ void loadTextures() {
     @textureIce3   = nvg::LoadTexture("src/img/ice3.png");
     @textureWood   = nvg::LoadTexture("src/img/wood.png");
     @textureBumper = nvg::LoadTexture("src/img/bumper.png");
-    @textureWater = nvg::LoadTexture("src/img/bumper.png");
+    @textureWater = nvg::LoadTexture("src/img/water.png");
 }
 
 
