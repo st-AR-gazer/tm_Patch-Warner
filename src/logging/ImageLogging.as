@@ -38,8 +38,11 @@ void drawTexture(nvg::Texture@ texture, int index = 0) {
 
     float xOffset = screenWidth * xOffsetDrawing;
     xOffset += (imageWidth + (imageWidth * 0.125f)) * index;
-
-    float yOffset = screenHeight / screenHeight - 1;
+    
+    float yOffset = 1;
+    if (screenHeight != 0) { 
+        yOffset = screenHeight / screenHeight - 1;
+    }
 
     auto pos = vec2(xOffset, yOffset + (custYOffest * screenHeight)); 
     auto size = vec2(imageWidth, imageSize);
