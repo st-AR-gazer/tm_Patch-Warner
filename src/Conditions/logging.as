@@ -32,20 +32,20 @@ enum LogLevel {
 
 //////////// CHANGE TO "true" ON RELEASE  ////////////
 [Setting category="z~DEV" name="Show default OP logs" hidden]
-bool S_showDefaultLogs = false;
+bool S_showDefaultLogs = true;
 //////////////////////////////////////////////////////
 
 [Setting category="z~DEV" name="Show Debug logs" hidden]
 bool DEV_S_sDebug = true;
-[Setting category="z~DEV" name="Show Info logs (INFO)" hidden]
+[Setting category="z~DEV" name="Show Info logs" hidden]
 bool DEV_S_sInfo = true;
-[Setting category="z~DEV" name="Show InfoG logs (INFO-G)" hidden]
+[Setting category="z~DEV" name="Show Notice logs" hidden]
 bool DEV_S_sNotice = true;
-[Setting category="z~DEV" name="Show Warn logs (WARN)" hidden]
+[Setting category="z~DEV" name="Show Warn logs" hidden]
 bool DEV_S_sWarn = true;
-[Setting category="z~DEV" name="Show Error logs (ERROR)" hidden]
+[Setting category="z~DEV" name="Show Error logs" hidden]
 bool DEV_S_sError = true;
-[Setting category="z~DEV" name="Show Critical logs (CRITICAL)" hidden]
+[Setting category="z~DEV" name="Show Critical logs" hidden]
 bool DEV_S_sCritical = true;
 
 [Setting category="z~DEV" name="Set log level" min="0" max="5" hidden]

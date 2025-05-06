@@ -1,11 +1,10 @@
 namespace Notification {
 
-    [Setting hidden] bool S_enableNotifyView = true;
-    [Setting category="General" name="Notification duration (ms)" min="1000" max="15000"]
-    int S_duration = 6000;
+    [Setting hidden] bool S_notif_enableNotifyView = true;
+    [Setting hidden] int S_notif_duration = 6000;
 
     void OnResultsReady(const string &in exeBuild) {
-        if (!S_enableNotifyView) return;
+        if (!S_notif_enableNotifyView) return;
         auto cache = Physics::g_Result;
         if (!cache.ready) return;
 
@@ -15,7 +14,6 @@ namespace Notification {
     }
 
     void Show(const Physics::Rule@ r, const string &in exeBuild) {
-
         string cond;
         if (r.minDate == "" && r.maxDate != "") {
             cond = "is lower than  " + r.maxDate;
@@ -40,6 +38,6 @@ namespace Notification {
         }
 
         UI::ShowNotification("Patch Warner", msg + "\n" + bar + "\\$z",
-                             vec4(1, .5, .1, .5), S_duration);
+                             vec4(1, .5, .1, .5), S_notif_duration);
     }
 }

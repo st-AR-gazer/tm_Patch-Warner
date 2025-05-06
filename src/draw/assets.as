@@ -1,17 +1,5 @@
 namespace ImageAssets {
-    [Setting category="General" name="Use Visual Image Indicator"]
-    bool S_useVisualIndicator = false;
-
-    [Setting category="General" name="X offset" description="fraction of screen width"]
-    float S_xOffset = 0.10f;
-
-    [Setting category="General" name="Y offset" description="fraction of screen height (0 = top)"]
-    float S_yOffset = 0.00f;
-
-    [Setting category="General" name="Image size" description="fraction of screen height"]
-    float S_imageSize = 0.10f;
-
-    nvg::Texture@ texIce1;  nvg::Texture@ texIce2;  nvg::Texture@ texIce3;
+    nvg::Texture@ texIce1;  nvg::Texture@ texIce2;   nvg::Texture@ texIce3;
     nvg::Texture@ texWood;  nvg::Texture@ texBumper; nvg::Texture@ texWater;
 
     void LoadTextures() {

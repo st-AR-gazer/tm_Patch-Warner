@@ -2,7 +2,7 @@ namespace Detectors {
 
     class GbxHeaderChunkInfo { int ChunkId; int ChunkSize; }
 
-    [Setting category="General" name="Use Offset" description="DEV: Read exeBuild via fixed GBX offset instead of XML chunk"]
+    [Setting hidden]
     bool S_useOffset = false;
 
     string GetExeBuild() {
@@ -21,29 +21,29 @@ namespace Detectors {
     string Normalize(const string &in s) {
         if (s == "") return "";
 
-        array<string> parts = s.Split("_");
-        if (parts.Length < 2) return s;
+        string t = s;
+        int spaceIdx = t.IndexOf(" ");
+        if (spaceIdx >= 0) t = t.SubStr(0, spaceIdx);
+        const string prefix = "date=";
+        if (t.StartsWith(prefix)) t = t.SubStr(prefix.Length);
 
+        array<string> parts = t.Split("_");
+        if (parts.Length != 2) return t;
         string datePart = parts[0];
 
-        array<string> t = parts;
-        t.RemoveAt(0);
-        while (t.Length < 3) t.InsertLast("00");
+        array<string> timeParts = parts[1].Split("-");
+        while (timeParts.Length < 3) timeParts.InsertLast("00");
 
-        string timePart = t[0] + "-" + t[1] + "-" + t[2];
-        return datePart + "_" + timePart;
+        return datePart + "_" + timeParts[0] + "-" + timeParts[1] + "-" + timeParts[2];
     }
 
 
     string ReadExeBuildFromXmlChunk() {
-
         string xmlString, exeBuild;
-
-        log("GetExeBuild() started.", LogLevel::Info, 36, "BuildDetector");
 
         CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetApp().RootMap.MapInfo.Fid);
         if (fidFile is null) {
-            log("fidFile null.", LogLevel::Warn, 39, "BuildDetector");
+            log("fidFile null.", LogLevel::Warn, 46, "ReadExeBuildFromXmlChunk");
             return "";
         }
 
@@ -79,7 +79,7 @@ namespace Detectors {
             }
 
         } catch {
-            log("Error reading GBX.", LogLevel::Error, 67, "BuildDetector");
+            log("Error reading GBX.", LogLevel::Error, 82, "ReadExeBuildFromXmlChunk");
         }
 
         return exeBuild;

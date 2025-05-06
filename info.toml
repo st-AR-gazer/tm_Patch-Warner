@@ -3,3 +3,6 @@ name = "Patch Warner"
 author = "ar....."
 version = "0.4.0"
 category = "Utilities"
+
+[script]
+exports = [ "src/exports/export.as" ]

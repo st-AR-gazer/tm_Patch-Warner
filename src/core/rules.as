@@ -77,7 +77,8 @@ namespace Physics {
         @Rule("Ice-1",    k,                    "2022-05-19_15-03-00", false, ViewIcon::PNG_ICE1),
         @Rule("Ice-2",   "2022-05-19_15-03-00", "2023-04-28_17-34-00", true,  ViewIcon::PNG_ICE2),
         @Rule("Ice-3",   "2023-04-28_17-34-00",  k,                    false, ViewIcon::PNG_ICE3),
-        @Rule("Bumper-1", k,                    "2020-12-22_13-18-00", true,  ViewIcon::PNG_BUMPER),
+
+        @Rule("Bumper",   k,                    "2020-12-22_13-18-00", true,  ViewIcon::PNG_BUMPER),
 
         @Rule("Wood",     k,                    "2023-11-15_11-56-00", false, ViewIcon::PNG_WOOD,
               @Detectors::Wood::IsLegacyWood)

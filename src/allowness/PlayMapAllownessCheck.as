@@ -23,7 +23,7 @@ namespace PlayMapAllowness {
 
         void OnMapLoad() {
             isAllowed = Permissions::PlayLocalMap();
-            if (!isAllowed && GetDisallowReason() != "") log("Cannot check for physics changes, you do not have permissions to play local maps.", LogLevel::Warn, 45, "OnMapLoad");
+            if (!isAllowed && GetDisallowReason() != "") log("Cannot check for physics changes, you do not have permissions to play local maps.", LogLevel::Warn, 26, "OnMapLoad");
         }  
     }
 

@@ -6,11 +6,11 @@ namespace MapTracker {
             sleep(273);
             if (!_Game::IsPlayingMap()) { oldMapUid = ""; continue; }
             if (get_CurrentMapUID() == oldMapUid) continue;
-            if (!get_CurrentMapUID() != "") { oldMapUid = ""; continue; }
+            if (get_CurrentMapUID() == "") { oldMapUid = ""; continue; }
 
             while (!_Game::IsPlayingMap()) yield();
 
-            log("Map changed to: " + get_CurrentMapUID(), LogLevel::Debug, 15, "MapMonitor");
+            log("Map changed to: " + get_CurrentMapUID(), LogLevel::Debug, 13, "MapMonitor");
 
             /* -- Permissions gate -- */
 
