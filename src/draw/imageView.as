@@ -59,8 +59,15 @@ namespace ImageView {
         float baseY = H * (1.0f - ImageView::S_strip_yOffset) - hImg;
 
         float stripW = (icons.Length > 0)
-                     ? (wImg + (icons.Length - 1) * wImg * 1.125f)
-                     : 0.0f;
+                    ? (wImg + (icons.Length - 1) * wImg * 1.125f)
+                    : 0.0f;
+
+        baseX = Math::Clamp(baseX, 0.0f, Math::Max(0.0f, W - stripW));
+
+        float menuH = OPMenu::g_HeightPx;
+        if (menuH > 0.0f && baseY < menuH) baseY = menuH;
+
+        baseY = Math::Clamp(baseY, 0.0f, Math::Max(0.0f, H - hImg));
 
         baseX = Math::Clamp(baseX, 0.0f, Math::Max(0.0f, W - stripW));
         baseY = Math::Clamp(baseY, 0.0f, Math::Max(0.0f, H - hImg));

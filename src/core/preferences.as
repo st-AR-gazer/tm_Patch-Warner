@@ -1,21 +1,11 @@
-/* core/Preferences.as
-   ───────────────────
-   Persist per-patch settings to JSON files.
-
-   • enabled state  → PatchWarnerPrefs.json
-   • custom label   → PatchWarnerLabels.json
-*/
 namespace Prefs {
-
-    /* file names ------------------------------------------------------- */
     const string kEnabledFile = IO::FromStorageFolder("PatchWarnerPrefs.json");
     const string kLabelFile   = IO::FromStorageFolder("PatchWarnerLabels.json");
 
-    /* dictionaries in memory ------------------------------------------- */
-    dictionary g_enabled;   // rule → bool
-    dictionary g_label;     // rule → string
+    dictionary g_enabled;
+    dictionary g_label;
 
-    /* ── enabled state ───────────────────────────────────────────────── */
+    /* enabled state */
     bool GetEnabled(const string &in rule, bool defVal = true) {
         return g_enabled.Exists(rule) ? bool(g_enabled[rule]) : defVal;
     }
@@ -38,7 +28,7 @@ namespace Prefs {
         Json::ToFile(kEnabledFile, root);
     }
 
-    /* ── custom label -------------------------------------------------- */
+    /* custom label */
     string GetLabel(const string &in rule, const string &in defVal) {
         return g_label.Exists(rule) ? string(g_label[rule]) : defVal;
     }
@@ -63,7 +53,7 @@ namespace Prefs {
         Json::ToFile(kLabelFile, root);
     }
 
-    /* ── apply on plugin load ----------------------------------------- */
+    /* apply on plugin load */
     void ApplyToRules() {
         for (uint i = 0; i < Physics::RULES.Length; ++i) {
             auto@ r = Physics::RULES[i];

@@ -97,6 +97,8 @@ namespace TableView {
         float baseX = W * S_anchorX;
         float baseY = H * S_anchorY;
 
+        if (S_anchorY < 0.06f && OPMenu::g_HeightPx > 0.0f) baseY += OPMenu::g_HeightPx;
+
         float dispY = 0.0f;
         if (elapsed < S_slideMS) {
             float p = EaseInOut(float(elapsed) / float(S_slideMS));
