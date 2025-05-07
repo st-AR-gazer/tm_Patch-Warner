@@ -64,7 +64,7 @@ namespace ImageView {
 
         baseX = Math::Clamp(baseX, 0.0f, Math::Max(0.0f, W - stripW));
 
-        float menuH = OPMenu::g_HeightPx;
+        float menuH = (UI::IsOverlayShown() ? OPMenu::g_HeightPx : 0.0f);
         if (menuH > 0.0f && baseY < menuH) baseY = menuH;
 
         baseY = Math::Clamp(baseY, 0.0f, Math::Max(0.0f, H - hImg));

@@ -2,7 +2,7 @@
 
 [SettingsTab name="General" icon="Cog" order="10"]
 void ST_PatchWarner() {
-    /* --------- General (two-column table) --------- */
+    /* --------- General (three-column table) --------- */
     UI::Text("General");
     UI::Separator();
 

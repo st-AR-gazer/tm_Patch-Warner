@@ -97,7 +97,7 @@ namespace TableView {
         float baseX = W * S_anchorX;
         float baseY = H * S_anchorY;
 
-        if (S_anchorY < 0.06f && OPMenu::g_HeightPx > 0.0f) baseY += OPMenu::g_HeightPx;
+        if (S_anchorY < 0.06f && UI::IsOverlayShown() && OPMenu::g_HeightPx > 0.0f) baseY += OPMenu::g_HeightPx;
 
         float dispY = 0.0f;
         if (elapsed < S_slideMS) {
@@ -140,7 +140,6 @@ namespace TableView {
                 if (r.minDate == "" && r.maxDate != "")      dateStr = "≤ " + r.maxDate;
                 else if (r.minDate != "" && r.maxDate == "") dateStr = "≥ " + r.minDate;
                 else if (r.minDate != "" && r.maxDate != "") {
-                    // trim last 6 chars from each date
                     string minTrim = r.minDate.SubStr(0, r.minDate.Length - 9);
                     string maxTrim = r.maxDate.SubStr(0, r.maxDate.Length - 9);
                     dateStr = minTrim + " … " + maxTrim;
