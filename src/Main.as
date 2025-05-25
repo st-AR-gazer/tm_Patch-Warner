@@ -1,6 +1,6 @@
 void Main() {
 #if DEPENDENCY_BETTERCHAT
-    OnLoad_BetterChat();
+    PatchWarnerChat::OnLoad_BetterChat();
 #endif
 
     Prefs::LoadEnabled();

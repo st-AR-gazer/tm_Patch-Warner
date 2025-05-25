@@ -53,10 +53,9 @@ namespace PatchWarnerChat {
         BetterChat::UnregisterCommand("lpw");
     }
 
+    void OnLoad_BetterChat() { PatchWarnerChat::Register(); }
+    void OnDestroy() { PatchWarnerChat::Unregister(); }
 }
-
-void OnLoad_BetterChat() { PatchWarnerChat::Register(); }
-void OnDestroy() { PatchWarnerChat::Unregister(); }
 
 #endif
 // ^^^ DEPENDENCY_BETTERCHAT
