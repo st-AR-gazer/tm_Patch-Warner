@@ -6,3 +6,4 @@ category = "Utilities"
 
 [script]
 exports = [ "src/exports/export.as" ]
+optional_dependencies = [ "BetterChat" ]

@@ -75,9 +75,9 @@ namespace ImageView {
         float fadeDur   = S_strip_fadeDuration;
         float fadeStart = float(S_strip_duration) - fadeDur;
         float a = 1.0f;
-        if (g_Countdown > fadeStart)
+        if (float(g_Countdown) > fadeStart)
             a = 1.0f - float(g_Countdown - fadeStart) / fadeDur;
-        else if (g_Countdown < fadeDur)
+        else if (float(g_Countdown) < fadeDur)
             a = float(g_Countdown) / fadeDur;
         a = Math::Clamp(a, 0.0f, 1.0f);
 

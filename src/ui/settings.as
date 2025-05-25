@@ -88,6 +88,12 @@ void ST_PatchWarner() {
     if (UI::BeginTabItem("Table")) {
         TableView::S_enableTableView = UI::Checkbox("Enable table view", TableView::S_enableTableView);
 
+        UI::Indent();
+        
+        TableView::S_constantDisplay = UI::Checkbox("Constant display (no auto-hide)", TableView::S_constantDisplay);
+        TableView::S_dragMode = UI::Checkbox("Enable drag-and-drop positioning", TableView::S_dragMode);
+        UI::Unindent();
+
         UI::Separator(); UI::Text("Content");
         UI::Indent();
         TableView::S_showDate = UI::Checkbox("Show patch date", TableView::S_showDate);
@@ -104,13 +110,22 @@ void ST_PatchWarner() {
         UI::Indent();
         TableView::S_anchorX = UI::SliderFloat("Horizontal anchor (%)", TableView::S_anchorX, 0.0f, 1.0f, "%.2f");
         TableView::S_anchorY = UI::SliderFloat("Vertical anchor (%)",   TableView::S_anchorY, 0.0f, 1.0f, "%.2f");
+
+        array<string> opts = { "Up (off-screen top)", "Down (from bottom)", "Left (from left edge)", "Right (from right edge)" };
+        if (UI::BeginCombo("Slide in/out from", opts[TableView::S_slideDir])) {
+            for (uint i = 0; i < opts.Length; ++i) {
+                bool sel = (int(i) == TableView::S_slideDir);
+                if (UI::Selectable(opts[i], sel)) TableView::S_slideDir = int(i);
+            }
+            UI::EndCombo();
+        }
         UI::Unindent();
 
         UI::Separator(); UI::Text("Animation");
         UI::Indent();
-        TableView::S_slideMS   = UI::SliderInt("Panel slide (ms)",    TableView::S_slideMS,   200, 2000);
+        TableView::S_slideMS   = UI::SliderInt("Panel slide (ms) (ease in/ease out duration)", TableView::S_slideMS, 200, 2000);
         TableView::S_sepGrowMS = UI::SliderInt("Separator grow (ms)", TableView::S_sepGrowMS, 200, 3000);
-        TableView::S_holdMS    = UI::SliderInt("Hold time (ms)",      TableView::S_holdMS,    1000, 15000);
+        TableView::S_holdMS    = UI::SliderInt("Hold time (ms)", TableView::S_holdMS, 1000, 15000);
         UI::Unindent();
 
         UI::Separator(); UI::Text("Colours");
@@ -127,10 +142,11 @@ void ST_PatchWarner() {
             TableView::S_heightScalePct = 90.0f;
             TableView::S_widthScalePct  = 50.0f;
             TableView::S_anchorX        = 0.70f;
-            TableView::S_anchorY        = 0.05f;
+            TableView::S_anchorY        = 0.03f;
             TableView::S_slideMS        = 500;
             TableView::S_sepGrowMS      = 1000;
-            TableView::S_holdMS         = 8000;
+            TableView::S_holdMS         = 3000;
+            TableView::S_slideDir       = int(TableView::SlideDir::Up);
 
             TableView::S_colBg      = vec4(0, 0, 0, 0.85f);
             TableView::S_colBorder  = vec4(1, 1, 1, 0.80f);
