@@ -37,9 +37,7 @@ void ST_PatchWarner() {
         UI::Indent();
         for (uint i = 0; i < Physics::RULES.Length; ++i) {
             string cur = Prefs::GetLabel(Physics::RULES[i].name, Physics::RULES[i].name);
-            string newTxt = UI::InputText("##lbl" + i, cur, false,
-                UI::InputTextFlags::CharsNoBlank | 
-                UI::InputTextFlags::AutoSelectAll);
+            string newTxt = UI::InputText("##lbl" + i, cur, false, UI::InputTextFlags::AutoSelectAll);
             if (newTxt != cur) Prefs::SetLabel(Physics::RULES[i].name, newTxt);
             UI::SameLine();
             UI::Text(Physics::RULES[i].name);
@@ -53,6 +51,7 @@ void ST_PatchWarner() {
 
         g_PluginEnabled = UI::Checkbox("Enable Patch Warner", g_PluginEnabled);
         Detectors::S_useOffset = UI::Checkbox("Read exeBuild via GBX offset", Detectors::S_useOffset);
+
         if (UI::Button("Use 'Gen' instead of boring normal text")) {
             for (uint i = 0; i < Physics::RULES.Length; ++i) {
                 string patchName = Physics::RULES[i].name;
@@ -64,6 +63,7 @@ void ST_PatchWarner() {
                 }
             }
         }
+        
         if (UI::Button("Reset patch labels to defaults")) {
             for (uint i = 0; i < Physics::RULES.Length; ++i) {
                 string patchName = Physics::RULES[i].name;

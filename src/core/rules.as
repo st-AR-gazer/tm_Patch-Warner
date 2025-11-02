@@ -83,7 +83,7 @@ namespace Physics {
 
     const string k = ""; // No limit
     Rule@[] RULES = {
-        @Rule("Water-1",        k,                    "2022-09-30_10-13-00", true,  ViewIcon::PNG_WATER),
+        @Rule("Water",          k,                    "2022-09-30_10-13-00", true,  ViewIcon::PNG_WATER),
         @Rule("Ice-1",          k,                    "2022-05-19_15-03-00", false, ViewIcon::PNG_ICE1),
         @Rule("Ice-2",         "2022-05-19_15-03-00", "2023-04-28_17-34-00", true,  ViewIcon::PNG_ICE2),
         @Rule("Ice-3",         "2023-04-28_17-34-00",  k,                    false, ViewIcon::PNG_ICE3),
