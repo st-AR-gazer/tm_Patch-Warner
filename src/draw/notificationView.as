@@ -28,13 +28,14 @@ namespace Notification {
 
         string bar;
         switch (r.icon) {
-            case Physics::ViewIcon::PNG_WATER:  bar = "\\$ade██████\\$7fd██████\\$4ed██████\\$088██████\\$008██████\\$0ff██████"; break;
-            case Physics::ViewIcon::PNG_ICE1:   bar = "\\$3cf████████████████████████████████████"; break;
-            case Physics::ViewIcon::PNG_ICE2:   bar = "\\$bdf████████████████████████████████████"; break;
-            case Physics::ViewIcon::PNG_ICE3:   bar = "\\$afe████████████████████████████████████"; break;
-            case Physics::ViewIcon::PNG_WOOD:   bar = "\\$b86████████████████████████████████████"; break;
-            case Physics::ViewIcon::PNG_BUMPER: bar = "\\$654██████\\$fb0██████\\$654██████\\$654██████\\$b31██████\\$654██████"; break;
-            default:                            bar = "";
+            case Physics::ViewIcon::PNG_WATER:   bar = "\\$ade██████\\$7fd██████\\$4ed██████\\$088██████\\$008██████\\$0ff██████"; break;
+            case Physics::ViewIcon::PNG_ICE1:    bar = "\\$3cf████████████████████████████████████"; break;
+            case Physics::ViewIcon::PNG_ICE2:    bar = "\\$bdf████████████████████████████████████"; break;
+            case Physics::ViewIcon::PNG_ICE3:    bar = "\\$afe████████████████████████████████████"; break;
+            case Physics::ViewIcon::PNG_WOOD:    bar = "\\$b86████████████████████████████████████"; break;
+            case Physics::ViewIcon::PNG_BUMPER:  bar = "\\$654██████\\$fb0██████\\$654██████\\$654██████\\$b31██████\\$654██████"; break;
+            case Physics::ViewIcon::PNG_SNOWCAR: bar = "\\$ddd████████████████████████████████████"; break;
+            default:                             bar = "";
         }
 
         UI::ShowNotification("Patch Warner", msg + "\n" + bar + "\\$z",

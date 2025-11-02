@@ -20,7 +20,7 @@ namespace Wood {
             g_offMapFlags = offChallengeParams + 0x8;   // +0x8 per Editor++
             g_ready = true;
         } catch {
-            log("Wood detector: failed to resolve offsets – old-wood check disabled.", LogLevel::Warn, 23, "Init");
+            log("Wood detector: failed to resolve offsets – old-wood check disabled.", LogLevel::Warning, 23, "Init");
             g_ready = false;
         }
     }

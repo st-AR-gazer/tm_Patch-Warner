@@ -11,7 +11,7 @@ void ST_PatchWarner() {
         UI::TableFlags::NoPadOuterX    |
         UI::TableFlags::BordersInnerV))
     {
-        UI::TableSetupColumn("Patches", UI::TableColumnFlags::WidthFixed, 150.0f);
+        UI::TableSetupColumn("Patches", UI::TableColumnFlags::WidthFixed, 160.0f);
         UI::TableSetupColumn("Toggles");
         UI::TableNextRow();
 

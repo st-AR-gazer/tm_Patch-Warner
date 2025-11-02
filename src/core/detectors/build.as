@@ -43,7 +43,7 @@ namespace Detectors {
 
         CSystemFidFile@ fidFile = cast<CSystemFidFile>(GetApp().RootMap.MapInfo.Fid);
         if (fidFile is null) {
-            log("fidFile null.", LogLevel::Warn, 46, "ReadExeBuildFromXmlChunk");
+            log("fidFile null.", LogLevel::Warning, 46, "ReadExeBuildFromXmlChunk");
             return "";
         }
 

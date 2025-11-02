@@ -1,6 +1,16 @@
 namespace Physics {
 
-    enum ViewIcon { NONE, PNG_WATER, PNG_ICE1, PNG_ICE2, PNG_ICE3, PNG_WOOD, PNG_BUMPER }
+    enum ViewIcon {
+        NONE,
+        PNG_WATER,
+        PNG_ICE1,
+        PNG_ICE2,
+        PNG_ICE3,
+        PNG_WOOD,
+        PNG_BUMPER,
+        PNG_SNOWCAR
+    }
+    
     funcdef bool DetectorFunc();
 
     class Rule {
@@ -19,12 +29,12 @@ namespace Physics {
              ViewIcon      _icon,
              DetectorFunc@ _alt = null)
         {
-            name        = _name;
-            minDate     = _minDate;
-            maxDate     = _maxDate;
-            includeMax  = _includeMax;
-            icon        = _icon;
-            @altDetector= _alt;
+            name         = _name;
+            minDate      = _minDate;
+            maxDate      = _maxDate;
+            includeMax   = _includeMax;
+            icon         = _icon;
+            @altDetector = _alt;
         }
 
         bool IsTriggered(const string &in exeBuild) const {
@@ -73,14 +83,16 @@ namespace Physics {
 
     const string k = ""; // No limit
     Rule@[] RULES = {
-        @Rule("Water-1",  k,                    "2022-09-30_10-13-00", true,  ViewIcon::PNG_WATER),
-        @Rule("Ice-1",    k,                    "2022-05-19_15-03-00", false, ViewIcon::PNG_ICE1),
-        @Rule("Ice-2",   "2022-05-19_15-03-00", "2023-04-28_17-34-00", true,  ViewIcon::PNG_ICE2),
-        @Rule("Ice-3",   "2023-04-28_17-34-00",  k,                    false, ViewIcon::PNG_ICE3),
+        @Rule("Water-1",        k,                    "2022-09-30_10-13-00", true,  ViewIcon::PNG_WATER),
+        @Rule("Ice-1",          k,                    "2022-05-19_15-03-00", false, ViewIcon::PNG_ICE1),
+        @Rule("Ice-2",         "2022-05-19_15-03-00", "2023-04-28_17-34-00", true,  ViewIcon::PNG_ICE2),
+        @Rule("Ice-3",         "2023-04-28_17-34-00",  k,                    false, ViewIcon::PNG_ICE3),
 
-        @Rule("Bumper",   k,                    "2020-12-22_13-18-00", true,  ViewIcon::PNG_BUMPER),
+        @Rule("Bumper",         k,                    "2020-12-22_13-18-00", true,  ViewIcon::PNG_BUMPER),
 
-        @Rule("Wood",     k,                    "2023-11-15_11-56-00", false, ViewIcon::PNG_WOOD,
+        @Rule("SnowCar Hitbox", k,                    "2024-02-26_11-36-00", true,  ViewIcon::PNG_SNOWCAR),
+
+        @Rule("Wood",           k,                    "2023-11-15_11-56-00", false, ViewIcon::PNG_WOOD,
               @Detectors::Wood::IsLegacyWood)
     };
 }

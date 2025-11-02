@@ -19,7 +19,7 @@ namespace MapTracker {
             AllowCheck::ConditionStatus status = AllowCheck::ConditionStatus::UNCHECKED;
             AllowCheck::InitializeAllowCheck();
             while (status == AllowCheck::ConditionStatus::UNCHECKED) {
-                if (Time::Now - startTime > timeout) { NotifyWarn("Condition check timed out (" + timeout + " ms)."); break; }
+                if (Time::Now - startTime > timeout) { NotifyWarning("Condition check timed out (" + timeout + " ms)."); break; }
                 yield();
                 status = AllowCheck::ConditionCheckStatus();
             }
@@ -29,7 +29,7 @@ namespace MapTracker {
                 Physics_RunChecks();
 
             } else {
-                NotifyWarn("You cannot check for physics changes on this map: \n" + AllowCheck::DissalowReason());
+                NotifyWarning("You cannot check for physics changes on this map: \n" + AllowCheck::DissalowReason());
             }
 
             oldMapUid = get_CurrentMapUID();
