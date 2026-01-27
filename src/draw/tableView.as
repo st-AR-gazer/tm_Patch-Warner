@@ -104,8 +104,8 @@ namespace TableView {
             }
         }
 
-        float W = Draw::GetWidth();
-        float H = Draw::GetHeight();
+        float W = Display::GetWidth();
+        float H = Display::GetHeight();
 
         float hScale = S_heightScalePct / 100.0f;
         float wScale = S_widthScalePct  / 100.0f;

@@ -50,8 +50,8 @@ namespace ImageView {
 
     void DrawStrip(const array<nvg::Texture@>@ icons) {
         float aspect   = 304.0f / 322.0f;
-        float W        = Draw::GetWidth();
-        float H        = Draw::GetHeight();
+        float W        = Display::GetWidth();
+        float H        = Display::GetHeight();
         float hImg     = H * ImageView::S_strip_imageSize;
         float wImg     = hImg * aspect;
 

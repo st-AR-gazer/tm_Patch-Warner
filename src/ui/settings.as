@@ -37,7 +37,7 @@ void ST_PatchWarner() {
         UI::Indent();
         for (uint i = 0; i < Physics::RULES.Length; ++i) {
             string cur = Prefs::GetLabel(Physics::RULES[i].name, Physics::RULES[i].name);
-            string newTxt = UI::InputText("##lbl" + i, cur, false, UI::InputTextFlags::AutoSelectAll);
+            string newTxt = UI::InputText("##lbl" + i, cur, UI::InputTextFlags::AutoSelectAll);
             if (newTxt != cur) Prefs::SetLabel(Physics::RULES[i].name, newTxt);
             UI::SameLine();
             UI::Text(Physics::RULES[i].name);
